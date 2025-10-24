@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Head from "next/head"
 
 const slides = [
   {
@@ -59,6 +60,8 @@ export function HeroSlider() {
               backgroundImage: `url(${slide.image})`,
               backgroundAttachment: "fixed",
             }}
+            role="img"
+            aria-label={slide.title}
           />
           <div className="absolute inset-0 bg-black/70" />
           <div className="relative h-full flex flex-col items-center justify-center text-center px-4">

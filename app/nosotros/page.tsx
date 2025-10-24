@@ -115,6 +115,8 @@ export default function AboutPage() {
                     src={note.image}
                     alt={note.title}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    loading="lazy"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>

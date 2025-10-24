@@ -15,10 +15,11 @@ export function RulesModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button size="lg" className="rounded-md bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-md hover:shadow-lg transition-all hover:scale-105 h-10">
-          <BookOpen className="h-5 w-5 mr-2" />
-          Ver Reglas Completas
-        </Button>
+        <button className="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-md hover:shadow-lg transition-all hover:scale-105 text-sm w-full sm:w-auto">
+          <BookOpen className="h-5 w-5" />
+          <span className="hidden sm:inline">Ver Reglas Completas</span>
+          <span className="sm:hidden">Ver Reglas</span>
+        </button>
       </DialogTrigger>
       <DialogContent className="max-w-5xl w-[95vw] max-h-[85vh] sm:max-h-[80vh]">
         <DialogHeader>

@@ -50,6 +50,7 @@ export function Navbar() {
               alt="La Campaña"
               width={200}
               height={50}
+              priority
               className="h-10 w-auto dark:brightness-0 dark:invert"
             />
           </Link>

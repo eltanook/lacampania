@@ -100,7 +100,7 @@ export default function HomePageClient() {
       >
         <div className="container mx-auto px-4">
           <SectionHeader label="El Juego" title="Conviértete en el Estratega Definitivo" align="center" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 mb-8 md:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 mb-8 md:mb-12">
             {/* Left: Video */}
             <div className="aspect-video w-full rounded-lg overflow-hidden border-2 border-primary/20 shadow-xl">
               <iframe
@@ -150,12 +150,12 @@ export default function HomePageClient() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 justify-start w-full sm:w-auto">
                 <RulesModal />
                 <Button
                   asChild
                   size="lg"
-                  className="rounded-md bg-transparent text-accent dark:text-white border-2 border-accent hover:bg-accent/10 font-semibold shadow-lg hover:shadow-xl transition-all h-10"
+                  className="rounded-md bg-transparent text-accent dark:text-white border-2 border-accent hover:bg-accent/10 font-semibold shadow-lg hover:shadow-xl transition-all h-10 w-full sm:w-auto"
                 >
                   <a
                     href="https://drive.google.com/uc?export=download&id=1qR8Y-JjPJzlO_jZM5P5FRt9bcOIxE5HQ"
@@ -163,7 +163,8 @@ export default function HomePageClient() {
                     rel="noopener noreferrer"
                   >
                     <Download className="h-5 w-5 mr-2" />
-                    Descargar Reglas PDF
+                    <span className="hidden sm:inline">Descargar Reglas PDF</span>
+                    <span className="sm:hidden">Descargar PDF</span>
                   </a>
                 </Button>
               </div>
