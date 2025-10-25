@@ -44,7 +44,7 @@ export default function CartClientPage() {
                   "url(https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Banner-01.png-FYDGGKH4GkOaJFKO7mCRwyeS6EB2es.jpeg)",
               }}
             />
-            <div className="absolute inset-0 bg-black/70" />
+            <div className="absolute inset-0 bg-black/50" />
           </div>
           <div className="relative z-10 text-center text-white px-4">
             <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 font-[family-name:var(--font-playfair)]">

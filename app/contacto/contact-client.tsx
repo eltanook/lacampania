@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Send } from "lucide-react"
+import { Mail, Phone, MapPin, Instagram, Send } from "lucide-react"
 import toast, { Toaster } from "react-hot-toast"
 
 export default function ContactClientPage() {
@@ -21,7 +21,7 @@ export default function ContactClientPage() {
     const formData = new FormData(form)
 
     try {
-      await fetch("https://formsubmit.co/ajax/info@lacampania.com.ar", {
+      await fetch("https://formsubmit.co/ajax/lucas.cafiero@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +62,7 @@ export default function ContactClientPage() {
                 "url(https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Banner-01.png-FYDGGKH4GkOaJFKO7mCRwyeS6EB2es.jpeg)",
             }}
           />
-          <div className="absolute inset-0 bg-black/70" />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
         <div className="relative z-10 text-center text-white px-4">
           <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 font-[family-name:var(--font-playfair)]">
@@ -174,10 +174,10 @@ export default function ContactClientPage() {
                   <div>
                     <p className="text-sm md:text-base font-medium text-foreground mb-1">Email</p>
                     <a
-                      href="mailto:info@lacampania.com.ar"
+                      href="mailto:lucas.cafiero@gmail.com"
                       className="text-sm md:text-base text-muted-foreground hover:text-primary transition-colors break-all"
                     >
-                      info@lacampania.com.ar
+                      lucas.cafiero@gmail.com
                     </a>
                   </div>
                 </div>
@@ -194,32 +194,16 @@ export default function ContactClientPage() {
               </div>
 
               <div className="bg-primary text-primary-foreground rounded-lg p-4 md:p-6 text-center">
-                <h3 className="text-base md:text-lg font-semibold mb-2">Seguinos en redes</h3>
+                <h3 className="text-base md:text-lg font-semibold mb-2">Seguinos en Instagram</h3>
                 <p className="text-xs md:text-sm opacity-90 mb-4">Conectate con nosotros en nuestras redes sociales</p>
                 <div className="flex gap-3 justify-center">
                   <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="h-10 w-10 md:h-12 md:w-12 rounded-md bg-primary-foreground/20 hover:bg-primary-foreground/30 flex items-center justify-center transition-colors"
-                  >
-                    <Facebook className="h-5 w-5 md:h-6 md:w-6" />
-                  </a>
-                  <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/lacampaniajuego/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="h-10 w-10 md:h-12 md:w-12 rounded-md bg-primary-foreground/20 hover:bg-primary-foreground/30 flex items-center justify-center transition-colors"
                   >
                     <Instagram className="h-5 w-5 md:h-6 md:w-6" />
-                  </a>
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="h-10 w-10 md:h-12 md:w-12 rounded-md bg-primary-foreground/20 hover:bg-primary-foreground/30 flex items-center justify-center transition-colors"
-                  >
-                    <Twitter className="h-5 w-5 md:h-6 md:w-6" />
                   </a>
                 </div>
               </div>

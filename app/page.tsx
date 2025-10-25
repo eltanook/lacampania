@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import HomePageClient from "./home-page-client"
-import Script from "next/script"
 
 export const metadata: Metadata = {
   title: "La Campaña - Juego de Estrategia Argentino | Nominado Premios Lúdicos 2025",
@@ -33,38 +32,6 @@ export const metadata: Metadata = {
   },
 }
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: 'La Campaña',
-  description: 'Juego de mesa de estrategia argentino para 2-5 jugadores',
-  brand: {
-    '@type': 'Brand',
-    name: 'La Campaña',
-  },
-  offers: {
-    '@type': 'Offer',
-    availability: 'https://schema.org/InStock',
-    priceCurrency: 'ARS',
-    url: 'https://www.mercadolibre.com.ar/la-campania-juego-base',
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    reviewCount: '150',
-  },
-}
-
 export default function HomePage() {
-  return (
-    <>
-      <Script
-        id="json-ld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        strategy="beforeInteractive"
-      />
-      <HomePageClient />
-    </>
-  )
+  return <HomePageClient />
 }

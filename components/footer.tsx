@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, ExternalLink } from "lucide-react"
+import { Instagram, Mail, Phone, MapPin, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function Footer() {
@@ -66,7 +66,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-muted-foreground">info@lacampania.com.ar</span>
+                <span className="text-sm text-muted-foreground">lucas.cafiero@gmail.com</span>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
@@ -80,28 +80,12 @@ export function Footer() {
             <h3 className="font-semibold text-primary mb-4 text-base">Redes Sociales</h3>
             <div className="flex gap-3 mb-6">
               <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="h-10 w-10 rounded-md bg-primary/20 hover:bg-primary text-primary hover:text-primary-foreground flex items-center justify-center transition-all shadow-sm hover:shadow-md"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/lacampaniajuego/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="h-10 w-10 rounded-md bg-primary/20 hover:bg-primary text-primary hover:text-primary-foreground flex items-center justify-center transition-all shadow-sm hover:shadow-md"
               >
                 <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="h-10 w-10 rounded-md bg-primary/20 hover:bg-primary text-primary hover:text-primary-foreground flex items-center justify-center transition-all shadow-sm hover:shadow-md"
-              >
-                <Twitter className="h-5 w-5" />
               </a>
             </div>
             <Button

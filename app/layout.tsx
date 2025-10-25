@@ -16,23 +16,35 @@ const geistSans = GeistSans
 export const metadata: Metadata = {
   metadataBase: new URL("https://lacampania.com.ar"),
   title: {
-    default: "La Campaña - Juego de Estrategia Argentino | Nominado Premios Lúdicos 2025",
+    default: "La Campaña - Juego de Mesa Argentino | Estrategia, Acción y Diversión",
     template: "%s | La Campaña",
   },
   description:
-    "La Campaña es un juego de mesa de estrategia argentino para 2-6 jugadores, nominado a mejor juego en los Premios Lúdicos 2025. Combina gestión de recursos, combate táctico y alianzas temporales. Compra online con envíos a todo el país.",
+    "La Campaña es un juego de mesa de estrategia argentino para 2-6 jugadores. Más dinámico que Catan con partidas de 15-20 minutos. Nominado a los Premios Lúdicos 2025. Compra online con envíos a todo el país.",
   keywords: [
+    "la campaña juego de mesa",
     "juego de mesa argentino",
-    "la campaña",
     "juego de estrategia",
-    "juegos de cartas",
+    "juegos de cartas estrategia",
     "board game argentina",
     "premios lúdicos 2025",
-    "juego de mesa 2-6 jugadores",
-    "juegos de mesa buenos aires",
-    "estrategia táctica",
-    "juego de mesa nominado",
+    "juego mesa 2-6 jugadores",
+    "alternativa catan",
+    "juego mesa rápido",
+    "juegos mesa buenos aires",
+    "estrategia táctica argentina",
+    "juego mesa nominado",
+    "comprar la campaña",
+    "eloy lucas creadores",
   ],
+  icons: {
+    icon: [
+      { url: "/images/logo-horizontal.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/images/logo-horizontal.png", type: "image/png" },
+    ],
+  },
   authors: [{ name: "Eloy y Lucas - La Campaña" }],
   creator: "La Campaña",
   publisher: "La Campaña",
@@ -46,23 +58,23 @@ export const metadata: Metadata = {
     locale: "es_AR",
     url: "https://lacampania.com.ar",
     siteName: "La Campaña",
-    title: "La Campaña - Juego de Mesa Argentino",
+    title: "La Campaña - Juego de Mesa Argentino de Estrategia",
     description:
-      "Juego de mesa de estrategia argentino para 2-6 jugadores. Nominado a los Premios Lúdicos 2025. Combina gestión de recursos, combate táctico y alianzas.",
+      "Más dinámico que Catan. Partidas rápidas de 15-20 minutos para 2-6 jugadores. Nominado a los Premios Lúdicos 2025. Combina gestión de recursos, combate directo y alianzas.",
     images: [
       {
-        url: "/board-game-box-la-campania.jpg",
+        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Banner-01.png-FYDGGKH4GkOaJFKO7mCRwyeS6EB2es.jpeg",
         width: 1200,
         height: 630,
-        alt: "La Campaña - Juego de Mesa Argentino",
+        alt: "La Campaña - Juego de Mesa Argentino de Estrategia",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "La Campaña - Juego de Estrategia Argentino",
-    description: "Juego de mesa argentino nominado a los Premios Lúdicos 2025. Para 2-6 jugadores.",
-    images: ["/board-game-box-la-campania.jpg"],
+    description: "Más dinámico que Catan. Partidas de 15-20 minutos. Nominado Premios Lúdicos 2025.",
+    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Banner-01.png-FYDGGKH4GkOaJFKO7mCRwyeS6EB2es.jpeg"],
   },
   robots: {
     index: true,
@@ -100,7 +112,7 @@ export default function RootLayout({
       areaServed: "AR",
       availableLanguage: "Spanish",
     },
-    sameAs: ["https://facebook.com/lacampania", "https://instagram.com/lacampania", "https://twitter.com/lacampania"],
+    sameAs: ["https://www.instagram.com/lacampaniajuego/"],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Buenos Aires",
@@ -111,7 +123,11 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          suppressHydrationWarning
+        />
       </head>
       <body className={`font-sans ${geistSans.variable} antialiased`}>
         <Script id="meta-pixel" strategy="afterInteractive">

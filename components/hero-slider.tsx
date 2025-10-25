@@ -46,7 +46,7 @@ export function HeroSlider() {
   }
 
   return (
-    <div className="relative h-[600px] md:h-[700px] overflow-hidden w-full shadow-xl">
+    <div className="relative h-[500px] sm:h-[600px] md:h-[700px] overflow-hidden w-full shadow-xl">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -63,7 +63,7 @@ export function HeroSlider() {
             role="img"
             aria-label={slide.title}
           />
-          <div className="absolute inset-0 bg-black/70" />
+          <div className="absolute inset-0 bg-black/50" />
           <div className="relative h-full flex flex-col items-center justify-center text-center px-4">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 text-balance font-[family-name:var(--font-playfair)]">
               {slide.title}
@@ -98,17 +98,17 @@ export function HeroSlider() {
 
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-primary/30 hover:bg-primary text-white p-2 rounded-md transition-all shadow-md hover:shadow-lg backdrop-blur-sm"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-primary/30 hover:bg-primary text-white p-1.5 sm:p-2 rounded-md transition-all shadow-md hover:shadow-lg backdrop-blur-sm"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="h-6 w-6" />
+        <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-primary/30 hover:bg-primary text-white p-2 rounded-md transition-all shadow-md hover:shadow-lg backdrop-blur-sm"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-primary/30 hover:bg-primary text-white p-1.5 sm:p-2 rounded-md transition-all shadow-md hover:shadow-lg backdrop-blur-sm"
         aria-label="Next slide"
       >
-        <ChevronRight className="h-6 w-6" />
+        <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
       </button>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">

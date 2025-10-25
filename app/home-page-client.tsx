@@ -9,7 +9,7 @@ import { CatalogProductCard } from "@/components/catalog-product-card"
 import { TestimonialCarousel } from "@/components/testimonial-carousel"
 import { RulesModal } from "@/components/rules-modal"
 import { AnimatedCounter } from "@/components/animated-counter"
-import { Brain, Users, Trophy, Target, Swords, Shield, Zap, Download, Instagram, Linkedin } from "lucide-react"
+import { Users, Trophy, Target, Swords, Shield, Zap, Download, Instagram } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { useEffect, useRef, useState } from "react"
@@ -19,27 +19,22 @@ import Image from "next/image"
 export default function HomePageClient() {
   const features = [
     {
-      icon: Brain,
-      title: "Más Estratégico que Risk",
-      description:
-        "No dependes de la suerte de los dados. Cada carta que juegas es una decisión táctica que define tu victoria.",
-    },
-    {
       icon: Users,
       title: "Más Dinámico que Catan",
       description:
-        "Sin esperar turnos eternos. Las alianzas temporales y traiciones mantienen a todos en tensión constante.",
+        "Sin esperar turnos eternos. \"La Campaña\" ofrece partidas rápidas de 15 a 20 minutos, respondiendo a la falencia de Catan de no tener partidas más cortas.",
+    },
+    {
+      icon: Swords,
+      title: "Más Interacción Directa que Catan",
+      description:
+        "\"La Campaña\" incorpora el ataque directo a cada jugador, una característica identificada como faltante en Catan. Esto fomenta alianzas y traiciones, manteniendo a todos en tensión constante.",
     },
     {
       icon: Trophy,
-      title: "Más Profundo que Monopoly",
-      description: "Estrategia real, no solo tirar dados y comprar. Cada partida es única con 120 cartas diferentes.",
-    },
-    {
-      icon: Target,
-      title: "Más Accesible que Twilight Imperium",
+      title: "Estrategia Compartida, Experiencia Diferente",
       description:
-        "Toda la profundidad estratégica en 30-60 minutos. No necesitas un día entero para una partida épica.",
+        "Al igual que Catan, \"La Campaña\" se basa en la administración de recursos y ofrece distintas formas de ganar. Sin embargo, se diferencia por su agilidad de aprendizaje y sus dimensiones prácticas.",
     },
   ]
 
@@ -152,21 +147,16 @@ export default function HomePageClient() {
 
               <div className="flex flex-col sm:flex-row gap-3 justify-start w-full sm:w-auto">
                 <RulesModal />
-                <Button
-                  asChild
-                  size="lg"
-                  className="rounded-md bg-transparent text-accent dark:text-white border-2 border-accent hover:bg-accent/10 font-semibold shadow-lg hover:shadow-xl transition-all h-10 w-full sm:w-auto"
+                <a
+                  href="https://drive.google.com/uc?export=download&id=1qR8Y-JjPJzlO_jZM5P5FRt9bcOIxE5HQ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md bg-transparent text-accent dark:text-white border-2 border-accent hover:bg-accent/10 font-semibold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto text-sm whitespace-nowrap"
                 >
-                  <a
-                    href="https://drive.google.com/uc?export=download&id=1qR8Y-JjPJzlO_jZM5P5FRt9bcOIxE5HQ"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Download className="h-5 w-5 mr-2" />
-                    <span className="hidden sm:inline">Descargar Reglas PDF</span>
-                    <span className="sm:hidden">Descargar PDF</span>
-                  </a>
-                </Button>
+                  <Download className="h-5 w-5" />
+                  <span className="hidden sm:inline">Descargar Reglas PDF</span>
+                  <span className="sm:hidden">Descargar PDF</span>
+                </a>
               </div>
             </div>
           </div>
@@ -206,8 +196,8 @@ export default function HomePageClient() {
                   {isMerch && (
                     <div className="absolute inset-0 bg-primary/80 backdrop-blur-[2px] rounded-lg flex items-center justify-center z-10 cursor-not-allowed">
                       <div className="text-center px-4 pointer-events-none">
-                        <p className="text-2xl font-bold text-primary-foreground mb-2">Próximamente</p>
-                        <p className="text-sm text-primary-foreground/80">Estamos preparando estos productos</p>
+                        <p className="text-xl sm:text-2xl font-bold text-primary-foreground mb-2">Próximamente</p>
+                        <p className="text-xs sm:text-sm text-primary-foreground/80">Estamos preparando estos productos</p>
                       </div>
                     </div>
                   )}
@@ -235,7 +225,7 @@ export default function HomePageClient() {
       >
         <div className="container mx-auto px-4">
           <SectionHeader label="Características" title="¿Por qué elegir La Campaña?" align="center" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
             {features.map((feature, index) => (
               <FeatureCard key={index} {...feature} />
             ))}
@@ -289,42 +279,24 @@ export default function HomePageClient() {
               >
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_2339-k87IshITAsxzLRiQfauesfVga9ukmU.jpg"
-                  alt="Eloy y Lucas"
+                  alt="Eloy y Lucas - Creadores de La Campaña"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
+                  loading="lazy"
                 />
-                {/* Hover overlay with creators info and social media */}
+                {/* Hover overlay with creators story */}
                 <div
                   className={`absolute inset-0 bg-primary/95 transition-opacity duration-300 flex items-center justify-center p-6 ${isAboutHovered ? "opacity-100" : "opacity-0"}`}
                 >
-                  <div className="text-primary-foreground space-y-6 text-center">
+                  <div className="text-primary-foreground space-y-4 text-center max-w-md">
                     <div>
                       <h4 className="font-bold text-xl mb-2">Eloy & Lucas</h4>
-                      <p className="text-sm opacity-90 mb-4">Los Creadores de La Campaña</p>
+                      <p className="text-sm opacity-90 mb-3">Los Creadores de La Campaña</p>
                     </div>
-                    <div className="space-y-3">
-                      <p className="text-sm font-semibold">Seguinos en redes:</p>
-                      <div className="flex gap-4 justify-center">
-                        <a
-                          href="https://www.instagram.com/lacampania.juego/"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-3 rounded-lg bg-primary-foreground/20 hover:bg-primary-foreground/30 transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <Instagram className="h-6 w-6" />
-                        </a>
-                        <a
-                          href="https://www.linkedin.com"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-3 rounded-lg bg-primary-foreground/20 hover:bg-primary-foreground/30 transition-colors"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <Linkedin className="h-6 w-6" />
-                        </a>
-                      </div>
-                    </div>
+                    <p className="text-sm leading-relaxed">
+                      Dos amigos de la infancia que se reencontraron para crear algo especial. Lo que comenzó como conversaciones nostálgicas sobre los juegos de nuestra juventud, se transformó en La Campaña: un proyecto que combina estrategia, diseño y pasión por el entretenimiento.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -353,7 +325,7 @@ export default function HomePageClient() {
             Seguinos en Instagram para estar al tanto de todos los eventos de la comunidad
           </p>
           <a
-            href="https://www.instagram.com/lacampania.juego/"
+            href="https://www.instagram.com/lacampaniajuego/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary-foreground text-primary rounded-md font-semibold hover:opacity-90 transition-opacity text-base"
