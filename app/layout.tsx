@@ -39,10 +39,10 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon: [
-      { url: "/images/logo-horizontal.png", type: "image/png" },
+      { url: "/images/favicon.png", type: "image/png" },
     ],
     apple: [
-      { url: "/images/logo-horizontal.png", type: "image/png" },
+      { url: "/images/favicon.png", type: "image/png" },
     ],
   },
   authors: [{ name: "Eloy y Lucas - La Campaña" }],
