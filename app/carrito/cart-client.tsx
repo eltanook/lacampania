@@ -19,11 +19,11 @@ export default function CartClientPage() {
     items.forEach((item, index) => {
       message += `${index + 1}. ${item.name}\n`
       message += `   Cantidad: ${item.quantity}\n`
-      message += `   Precio unitario: $${item.price.toLocaleString()}\n`
-      message += `   Subtotal: $${(item.price * item.quantity).toLocaleString()}\n\n`
+      message += `   Precio unitario: $${item.price.toLocaleString('es-AR')}\n`
+      message += `   Subtotal: $${(item.price * item.quantity).toLocaleString('es-AR')}\n\n`
     })
 
-    message += `*Total: $${total.toLocaleString()}*\n\n`
+    message += `*Total: $${total.toLocaleString('es-AR')}*\n\n`
     message += "¿Podrían confirmar disponibilidad y coordinar el envío?"
 
     const phoneNumber = "5491137850259"
@@ -110,7 +110,7 @@ export default function CartClientPage() {
 
                 <div className="flex-1 min-w-0">
                   <h3 className="text-sm md:text-base font-semibold text-foreground mb-1 truncate">{item.name}</h3>
-                  <p className="text-base md:text-lg font-bold text-primary mb-2">${item.price.toLocaleString()}</p>
+                  <p className="text-base md:text-lg font-bold text-primary mb-2">${item.price.toLocaleString('es-AR')}</p>
 
                   <div className="flex items-center gap-2 md:gap-4 flex-wrap">
                     <div className="flex items-center border border-border rounded-md">
@@ -146,7 +146,7 @@ export default function CartClientPage() {
                 <div className="text-right hidden sm:block">
                   <p className="text-xs md:text-sm text-muted-foreground mb-1">Subtotal</p>
                   <p className="text-lg md:text-xl font-bold text-foreground">
-                    ${(item.price * item.quantity).toLocaleString()}
+                    ${(item.price * item.quantity).toLocaleString('es-AR')}
                   </p>
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default function CartClientPage() {
               <div className="space-y-3">
                 <div className="flex justify-between text-sm md:text-base text-muted-foreground">
                   <span>Subtotal ({items.reduce((sum, item) => sum + item.quantity, 0)} productos)</span>
-                  <span>${total.toLocaleString()}</span>
+                  <span>${total.toLocaleString('es-AR')}</span>
                 </div>
                 <div className="flex justify-between text-sm md:text-base text-muted-foreground">
                   <span>Envío</span>
@@ -183,7 +183,7 @@ export default function CartClientPage() {
                 <div className="border-t border-border pt-3">
                   <div className="flex justify-between text-lg md:text-xl font-bold text-foreground">
                     <span>Total</span>
-                    <span className="text-primary">${total.toLocaleString()}</span>
+                    <span className="text-primary">${total.toLocaleString('es-AR')}</span>
                   </div>
                 </div>
               </div>

@@ -15,6 +15,16 @@ import { Button } from "@/components/ui/button"
 import { useEffect, useRef, useState } from "react"
 import { getFeaturedProducts } from "@/lib/products"
 import Image from "next/image"
+import toast, { Toaster } from "react-hot-toast"
+
+// Frases motivadoras para el toast inicial
+const motivationalPhrases = [
+  "🏆 Nominado a Mejor Juego del Año - Premios Lúdicos 2025",
+  "⚡ Partidas rápidas de 15-20 minutos. ¡Más dinámico que nunca!",
+  "🎯 Estrategia argentina que conquista jugadores de 2 a 6",
+  "🔥 Stock limitado. ¡No te quedes sin el juego del momento!",
+  "🇦🇷 El juego de estrategia argentino que todos están jugando"
+]
 
 export default function HomePageClient() {
   const features = [
@@ -56,6 +66,34 @@ export default function HomePageClient() {
   const aboutRef = useRef<HTMLElement>(null)
   const eventsRef = useRef<HTMLElement>(null)
 
+  // Toast motivador al cargar la página por primera vez
+  useEffect(() => {
+    const hasSeenToast = localStorage.getItem('hasSeenWelcomeToast')
+    
+    if (!hasSeenToast) {
+      const randomPhrase = motivationalPhrases[Math.floor(Math.random() * motivationalPhrases.length)]
+      
+      setTimeout(() => {
+        toast(randomPhrase, {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            background: 'hsl(var(--primary))',
+            color: 'hsl(var(--primary-foreground))',
+            fontWeight: '600',
+            padding: '16px 24px',
+            borderRadius: '8px',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
+            maxWidth: '500px',
+          },
+          icon: '🎲',
+        })
+        
+        localStorage.setItem('hasSeenWelcomeToast', 'true')
+      }, 1000)
+    }
+  }, [])
+
   useEffect(() => {
     const observers: IntersectionObserver[] = []
 
@@ -85,6 +123,7 @@ export default function HomePageClient() {
 
   return (
     <div>
+      <Toaster />
       <HeroSlider />
 
       <section
@@ -183,6 +222,7 @@ export default function HomePageClient() {
                     name={product.name}
                     price={product.price}
                     image={product.images[0]}
+                    images={product.images}
                     mercadoLibreUrl={product.mercadoLibreUrl || "#"}
                     description={product.shortDescription}
                     labels={product.labels}

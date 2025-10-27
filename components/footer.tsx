@@ -94,7 +94,7 @@ export function Footer() {
               className="w-full rounded-md bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all"
             >
               <a
-                href="https://www.mercadolibre.com.ar/la-campania-juego-base"
+                href="https://www.mercadolibre.com.ar/la-campana--juego-de-mesa--estrategia/up/MLAU594279492?pdp_filters=item_id:MLA1888909180"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2"

@@ -70,7 +70,7 @@ export function ProductCard({ id, name, price, image, description }: ProductCard
           <h3 className="text-lg font-semibold text-foreground mb-1">{name}</h3>
           {description && <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{description}</p>}
           <div className="flex items-center justify-between">
-            <span className="text-2xl font-bold text-primary">${price.toLocaleString()}</span>
+            <span className="text-2xl font-bold text-primary">${price.toLocaleString('es-AR')}</span>
           </div>
         </div>
       </div>

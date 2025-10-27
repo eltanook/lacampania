@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ExternalLink, ChevronRight } from "lucide-react"
@@ -11,6 +12,7 @@ interface CatalogProductCardProps {
   name: string
   price: number
   image: string
+  images?: string[]
   mercadoLibreUrl: string
   description?: string
   labels?: string[]
@@ -22,11 +24,15 @@ export function CatalogProductCard({
   name,
   price,
   image,
+  images,
   mercadoLibreUrl,
   description,
   labels,
   detailPageUrl,
 }: CatalogProductCardProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  
   // Fetch live price from MercadoLibre for the main product
   const { price: livePrice, loading: priceLoading } = useMercadoLibrePrice(
     id === "la-campania-base" ? mercadoLibreUrl : undefined
@@ -40,6 +46,25 @@ export function CatalogProductCard({
 
   const WrapperComponent = isInternalLink ? Link : "a"
   const wrapperProps = isInternalLink ? { href } : { href, target: "_blank", rel: "noopener noreferrer" }
+  
+  // Carousel logic only for products without detailPageUrl (going to MercadoLibre directly)
+  const shouldShowCarousel = !isInternalLink && images && images.length > 1
+  
+  useEffect(() => {
+    if (!shouldShowCarousel) return
+    
+    const interval = setInterval(() => {
+      setIsTransitioning(true)
+      setTimeout(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
+        setIsTransitioning(false)
+      }, 300)
+    }, 3000)
+    
+    return () => clearInterval(interval)
+  }, [shouldShowCarousel, images])
+  
+  const currentImage = shouldShowCarousel ? images[currentImageIndex] : image
 
   return (
     <WrapperComponent
@@ -48,11 +73,13 @@ export function CatalogProductCard({
     >
       <div className="relative aspect-square overflow-hidden">
         <Image
-          src={image || "/placeholder.svg"}
+          src={currentImage || "/placeholder.svg"}
           alt={name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
+          className={`object-cover group-hover:scale-105 transition-all duration-500 ${
+            isTransitioning ? "opacity-0" : "opacity-100"
+          }`}
           loading="lazy"
         />
         {labels && labels.length > 0 && (
@@ -79,7 +106,7 @@ export function CatalogProductCard({
             {priceLoading ? (
               <span className="text-xl">Cargando...</span>
             ) : (
-              `$${displayPrice.toLocaleString()}`
+              `$${displayPrice.toLocaleString('es-AR')}`
             )}
           </span>
         </div>

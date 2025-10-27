@@ -31,6 +31,7 @@ export default function CatalogPage() {
               name={mainProduct.name}
               price={mainProduct.price}
               image={mainProduct.images[0]}
+              images={mainProduct.images}
               mercadoLibreUrl={mainProduct.mercadoLibreUrl || "#"}
               description={mainProduct.shortDescription}
               labels={mainProduct.labels}

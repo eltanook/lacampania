@@ -247,11 +247,11 @@ function MerchDetailContent({
             <div className="flex items-baseline gap-4 mb-6">
               {product.salePrice ? (
                 <>
-                  <span className="text-2xl text-muted-foreground line-through">${product.price.toLocaleString()}</span>
-                  <span className="text-4xl font-bold text-accent">${product.salePrice.toLocaleString()}</span>
+                  <span className="text-2xl text-muted-foreground line-through">${product.price.toLocaleString('es-AR')}</span>
+                  <span className="text-4xl font-bold text-accent">${product.salePrice.toLocaleString('es-AR')}</span>
                 </>
               ) : (
-                <span className="text-4xl font-bold text-primary">${product.price.toLocaleString()}</span>
+                <span className="text-4xl font-bold text-primary">${product.price.toLocaleString('es-AR')}</span>
               )}
               <span className="text-sm text-muted-foreground">SKU: {product.sku}</span>
             </div>

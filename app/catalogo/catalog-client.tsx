@@ -137,7 +137,7 @@ export default function CatalogClientPage() {
                         <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-1">{product.name}</h3>
                         <p className="text-sm text-muted-foreground mb-3 line-clamp-2">{product.shortDescription}</p>
                         <div className="flex items-center justify-between">
-                          <span className="text-2xl font-bold text-primary">${product.price.toLocaleString()}</span>
+                          <span className="text-2xl font-bold text-primary">${product.price.toLocaleString('es-AR')}</span>
                         </div>
                       </div>
                     </div>

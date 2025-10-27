@@ -30,9 +30,10 @@ export const products: Product[] = [
     category: "Juego Base",
     images: [
       "/la-campania-box-with-cards.webp",
-      "/board-game-box-la-campania.jpg",
-      "/strategic-board-game-cards-on-table.jpg",
-      "/people-playing-strategic-card-game.jpg",
+      "/producto2.webp",
+      "/producto3.webp",
+      "/producto4.webp",
+      "/producto5.webp",
     ],
     dimensions: "30cm x 30cm x 8cm",
     featured: true,

@@ -121,7 +121,7 @@ function ProductDetailContent({
               {product.name}
             </h1>
             <div className="flex items-baseline gap-4 mb-6">
-              <span className="text-4xl font-bold text-primary">${product.price.toLocaleString()}</span>
+              <span className="text-4xl font-bold text-primary">${product.price.toLocaleString('es-AR')}</span>
               <span className="text-sm text-muted-foreground">SKU: {product.sku}</span>
             </div>
 
@@ -189,7 +189,14 @@ function ProductDetailContent({
             <SectionHeader label="Recomendados" title="También te puede interesar" align="center" />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {recommendedProducts.map((product) => (
-                <ProductCard key={product.id} {...product} />
+                <ProductCard 
+                  key={product.id} 
+                  id={product.id}
+                  name={product.name}
+                  price={product.price}
+                  image={product.images[0]}
+                  description={product.shortDescription}
+                />
               ))}
             </div>
           </div>

@@ -114,11 +114,11 @@ export function MerchProductCard({
           <div className="flex items-center gap-2">
             {salePrice ? (
               <>
-                <span className="text-lg text-muted-foreground line-through">${price.toLocaleString()}</span>
-                <span className="text-2xl font-bold text-accent">${salePrice.toLocaleString()}</span>
+                <span className="text-lg text-muted-foreground line-through">${price.toLocaleString('es-AR')}</span>
+                <span className="text-2xl font-bold text-accent">${salePrice.toLocaleString('es-AR')}</span>
               </>
             ) : (
-              <span className="text-2xl font-bold text-primary">${price.toLocaleString()}</span>
+              <span className="text-2xl font-bold text-primary">${price.toLocaleString('es-AR')}</span>
             )}
           </div>
         </div>
