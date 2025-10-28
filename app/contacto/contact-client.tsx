@@ -21,7 +21,7 @@ export default function ContactClientPage() {
     const formData = new FormData(form)
 
     try {
-      await fetch("https://formsubmit.co/ajax/lucas.cafiero@gmail.com", {
+      await fetch("https://formsubmit.co/ajax/lacampaniajuego@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -174,10 +174,10 @@ export default function ContactClientPage() {
                   <div>
                     <p className="text-sm md:text-base font-medium text-foreground mb-1">Email</p>
                     <a
-                      href="mailto:lucas.cafiero@gmail.com"
+                      href="mailto:lacampaniajuego@gmail.com"
                       className="text-sm md:text-base text-muted-foreground hover:text-primary transition-colors break-all"
                     >
-                      lucas.cafiero@gmail.com
+                      lacampaniajuego@gmail.com
                     </a>
                   </div>
                 </div>

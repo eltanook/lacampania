@@ -1,7 +1,8 @@
 import { SectionHeader } from "@/components/section-header"
 import { TestimonialCarousel } from "@/components/testimonial-carousel"
+import { PressCarousel } from "@/components/press-carousel"
 import Image from "next/image"
-import { Award, Users, Target, Heart, ExternalLink } from "lucide-react"
+import { Award, Users, Target, Heart } from "lucide-react"
 
 export const metadata = {
   title: "Nosotros - La Campaña | Conoce a los Creadores Eloy y Lucas",
@@ -43,41 +44,6 @@ export default function AboutPage() {
     },
   ]
 
-  const pressNotes = [
-    {
-      title: "La Campaña: el juego de mesa argentino que mezcla estrategia, velocidad y diversión",
-      outlet: "Locos x los Juegos",
-      date: "2024",
-      excerpt: "Un juego de cartas estratégico desarrollado por dos amigos argentinos que busca recuperar el contacto cara a cara en la era digital.",
-      url: "https://locosxlosjuegos.com/la-campana-el-juego-de-mesa-argentino-que-mezcla-estrategia-velocidad-y-diversion/",
-      image: "/evento-convencion-ba.png",
-    },
-    {
-      title: "La Campaña: un juego estratégico que devuelve el cara a cara",
-      outlet: "Radio Nacional",
-      date: "2024",
-      excerpt: "Entrevista con los creadores sobre cómo surgió la idea de crear un juego que fomente la interacción social y el pensamiento estratégico.",
-      url: "https://www.radionacional.com.ar/la-campana-un-juego-estrategico-que-devuelve-el-cara-a-cara/",
-      image: "/evento-encuentro-comunidad.png",
-    },
-    {
-      title: "Es argentino y creó adictivo juego de cartas para hacerle guerra a las pantallas",
-      outlet: "iProfesional",
-      date: "2024",
-      excerpt: "La historia detrás de La Campaña, el juego que busca competir con las pantallas y recuperar el tiempo de calidad entre amigos y familia.",
-      url: "https://www.iprofesional.com/negocios/438876-es-argentino-y-creo-adictivo-juego-cartas-para-hacerle-guerra-a-pantallas",
-      image: "/evento-premios-ludicos.png",
-    },
-    {
-      title: "Entregan kits de juegos tradicionales para que los chicos usen en los recreos",
-      outlet: "Perfil",
-      date: "2024",
-      excerpt: "La Campaña forma parte de una iniciativa para promover juegos de mesa en escuelas y espacios recreativos.",
-      url: "https://www.perfil.com/noticias/sociedad/entregan-kits-de-juegos-tradicionales-para-que-los-chicos-usen-en-los-recreos.phtml",
-      image: "/evento-torneo-nacional.png",
-    },
-  ]
-
   return (
     <div>
       {/* Hero Section */}
@@ -100,47 +66,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Press Notes Carousel Section - MVP: Moved before History */}
+      {/* Press Carousel Section - MVP: Moved before History */}
       <section className="bg-primary/5 py-12 md:py-16 border-y-2 border-primary/10">
         <div className="container mx-auto px-4">
           <SectionHeader label="Prensa" title="Notas de Prensa" align="center" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 max-w-6xl mx-auto">
-            {pressNotes.map((note, index) => (
-              <div
-                key={index}
-                className="group bg-card rounded-lg border-2 border-primary/20 hover:border-primary overflow-hidden hover:shadow-xl transition-all duration-300"
-              >
-                <div className="relative aspect-video overflow-hidden">
-                  <Image
-                    src={note.image}
-                    alt={note.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    loading="lazy"
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-semibold text-primary">{note.outlet}</span>
-                    <span className="text-xs text-muted-foreground">{note.date}</span>
-                  </div>
-                  <h3 className="text-sm md:text-base font-semibold text-foreground mb-2 line-clamp-2">
-                    {note.title}
-                  </h3>
-                  <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{note.excerpt}</p>
-                  <a
-                    href={note.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:gap-2 transition-all"
-                  >
-                    Leer nota completa
-                    <ExternalLink className="h-3 w-3" />
-                  </a>
-                </div>
-              </div>
-            ))}
+          <div className="max-w-5xl mx-auto">
+            <PressCarousel />
           </div>
         </div>
       </section>

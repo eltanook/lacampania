@@ -15,36 +15,26 @@ import { Button } from "@/components/ui/button"
 import { useEffect, useRef, useState } from "react"
 import { getFeaturedProducts } from "@/lib/products"
 import Image from "next/image"
-import toast, { Toaster } from "react-hot-toast"
-
-// Frases motivadoras para el toast inicial
-const motivationalPhrases = [
-  "🏆 Nominado a Mejor Juego del Año - Premios Lúdicos 2025",
-  "⚡ Partidas rápidas de 15-20 minutos. ¡Más dinámico que nunca!",
-  "🎯 Estrategia argentina que conquista jugadores de 2 a 6",
-  "🔥 Stock limitado. ¡No te quedes sin el juego del momento!",
-  "🇦🇷 El juego de estrategia argentino que todos están jugando"
-]
 
 export default function HomePageClient() {
   const features = [
     {
       icon: Users,
-      title: "Más Dinámico que Catan",
+      title: "Más Dinámico",
       description:
-        "Sin esperar turnos eternos. \"La Campaña\" ofrece partidas rápidas de 15 a 20 minutos, respondiendo a la falencia de Catan de no tener partidas más cortas.",
+        "Sin esperar turnos eternos. \"La Campaña\" ofrece partidas rápidas de 15 a 20 minutos con acción constante que mantiene a todos comprometidos.",
     },
     {
       icon: Swords,
-      title: "Más Interacción Directa que Catan",
+      title: "Más Interacción Directa",
       description:
-        "\"La Campaña\" incorpora el ataque directo a cada jugador, una característica identificada como faltante en Catan. Esto fomenta alianzas y traiciones, manteniendo a todos en tensión constante.",
+        "\"La Campaña\" incorpora el ataque directo a cada jugador, fomentando alianzas estratégicas y traiciones emocionantes que mantienen a todos en tensión constante.",
     },
     {
       icon: Trophy,
-      title: "Estrategia Compartida, Experiencia Diferente",
+      title: "Estrategia Profunda, Fácil de Aprender",
       description:
-        "Al igual que Catan, \"La Campaña\" se basa en la administración de recursos y ofrece distintas formas de ganar. Sin embargo, se diferencia por su agilidad de aprendizaje y sus dimensiones prácticas.",
+        "\"La Campaña\" se basa en la administración de recursos y ofrece múltiples caminos hacia la victoria. Se destaca por su agilidad de aprendizaje y sus dimensiones prácticas.",
     },
   ]
 
@@ -65,34 +55,6 @@ export default function HomePageClient() {
   const featuresRef = useRef<HTMLElement>(null)
   const aboutRef = useRef<HTMLElement>(null)
   const eventsRef = useRef<HTMLElement>(null)
-
-  // Toast motivador al cargar la página por primera vez
-  useEffect(() => {
-    const hasSeenToast = localStorage.getItem('hasSeenWelcomeToast')
-    
-    if (!hasSeenToast) {
-      const randomPhrase = motivationalPhrases[Math.floor(Math.random() * motivationalPhrases.length)]
-      
-      setTimeout(() => {
-        toast(randomPhrase, {
-          duration: 5000,
-          position: 'top-center',
-          style: {
-            background: 'hsl(var(--primary))',
-            color: 'hsl(var(--primary-foreground))',
-            fontWeight: '600',
-            padding: '16px 24px',
-            borderRadius: '8px',
-            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
-            maxWidth: '500px',
-          },
-          icon: '🎲',
-        })
-        
-        localStorage.setItem('hasSeenWelcomeToast', 'true')
-      }, 1000)
-    }
-  }, [])
 
   useEffect(() => {
     const observers: IntersectionObserver[] = []
@@ -123,7 +85,6 @@ export default function HomePageClient() {
 
   return (
     <div>
-      <Toaster />
       <HeroSlider />
 
       <section
@@ -187,9 +148,8 @@ export default function HomePageClient() {
               <div className="flex flex-col sm:flex-row gap-3 justify-start w-full sm:w-auto">
                 <RulesModal />
                 <a
-                  href="https://drive.google.com/uc?export=download&id=1qR8Y-JjPJzlO_jZM5P5FRt9bcOIxE5HQ"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/La Campaña - reglas oficiales.pdf"
+                  download="La Campaña - reglas oficiales.pdf"
                   className="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-md bg-transparent text-accent dark:text-white border-2 border-accent hover:bg-accent/10 font-semibold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto text-sm whitespace-nowrap"
                 >
                   <Download className="h-5 w-5" />
@@ -340,6 +300,47 @@ export default function HomePageClient() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Awards Section - Reconocimientos */}
+      <section className="bg-primary/5 py-12 md:py-16 border-y-2 border-primary/10">
+        <div className="container mx-auto px-4">
+          <SectionHeader label="Reconocimientos" title="Premios y Nominaciones" align="center" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
+            <div className="bg-card rounded-lg border-2 border-primary/20 hover:border-primary p-4 md:p-6 text-center hover:shadow-xl transition-all duration-300">
+              <div className="inline-flex p-3 md:p-4 rounded-lg bg-primary/20 text-primary mb-4 shadow-sm">
+                <Trophy className="h-6 w-6 md:h-8 md:w-8" />
+              </div>
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-2">2025</div>
+              <h3 className="text-sm md:text-base font-semibold text-foreground mb-2">Nominado Premios Lúdicos 2025</h3>
+              <p className="text-xs md:text-sm text-muted-foreground">Mejor Juego de Mesa del Año</p>
+            </div>
+            <div className="bg-card rounded-lg border-2 border-primary/20 hover:border-primary p-4 md:p-6 text-center hover:shadow-xl transition-all duration-300">
+              <div className="inline-flex p-3 md:p-4 rounded-lg bg-primary/20 text-primary mb-4 shadow-sm">
+                <Trophy className="h-6 w-6 md:h-8 md:w-8" />
+              </div>
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-2">2024</div>
+              <h3 className="text-sm md:text-base font-semibold text-foreground mb-2">Mejor Diseño Gráfico</h3>
+              <p className="text-xs md:text-sm text-muted-foreground">Convención de Juegos BA</p>
+            </div>
+            <div className="bg-card rounded-lg border-2 border-primary/20 hover:border-primary p-4 md:p-6 text-center hover:shadow-xl transition-all duration-300">
+              <div className="inline-flex p-3 md:p-4 rounded-lg bg-primary/20 text-primary mb-4 shadow-sm">
+                <Users className="h-6 w-6 md:h-8 md:w-8" />
+              </div>
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-2">2024</div>
+              <h3 className="text-sm md:text-base font-semibold text-foreground mb-2">Juego Favorito del Público</h3>
+              <p className="text-xs md:text-sm text-muted-foreground">Festival Lúdico Argentino</p>
+            </div>
+            <div className="bg-card rounded-lg border-2 border-primary/20 hover:border-primary p-4 md:p-6 text-center hover:shadow-xl transition-all duration-300">
+              <div className="inline-flex p-3 md:p-4 rounded-lg bg-primary/20 text-primary mb-4 shadow-sm">
+                <Target className="h-6 w-6 md:h-8 md:w-8" />
+              </div>
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-2">2024</div>
+              <h3 className="text-sm md:text-base font-semibold text-foreground mb-2">Innovación en Mecánicas</h3>
+              <p className="text-xs md:text-sm text-muted-foreground">Asociación Argentina de Juegos</p>
             </div>
           </div>
         </div>

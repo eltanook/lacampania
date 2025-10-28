@@ -46,7 +46,7 @@ export function HeroSlider() {
   }
 
   return (
-    <div className="relative h-[500px] sm:h-[600px] md:h-[700px] overflow-hidden w-full shadow-xl">
+    <div className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden w-full shadow-xl">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -55,10 +55,9 @@ export function HeroSlider() {
           }`}
         >
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center bg-scroll md:bg-fixed"
             style={{
               backgroundImage: `url(${slide.image})`,
-              backgroundAttachment: "fixed",
             }}
             role="img"
             aria-label={slide.title}
