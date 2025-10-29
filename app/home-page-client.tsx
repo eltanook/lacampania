@@ -241,9 +241,7 @@ export default function HomePageClient() {
       >
         <div className="container mx-auto px-4">
           <SectionHeader label="Nosotros" title="Los Creadores" align="center" />
-
-          <div className="max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-6 items-center">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
               {/* Text and CTAs - Left side */}
               <div className="space-y-4 order-2 md:order-1">
                 <h3 className="text-2xl md:text-3xl font-bold text-foreground">La historia detrás de La Campaña</h3>
@@ -301,7 +299,6 @@ export default function HomePageClient() {
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </section>
 
