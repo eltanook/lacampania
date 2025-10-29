@@ -17,32 +17,6 @@ export const metadata = {
 }
 
 export default function AboutPage() {
-  const awards = [
-    {
-      icon: Award,
-      title: "Nominado Premios Lúdicos 2025",
-      description: "Mejor Juego de Mesa del Año",
-      year: "2025",
-    },
-    {
-      icon: Award,
-      title: "Mejor Diseño Gráfico",
-      description: "Convención de Juegos BA",
-      year: "2024",
-    },
-    {
-      icon: Users,
-      title: "Juego Favorito del Público",
-      description: "Festival Lúdico Argentino",
-      year: "2024",
-    },
-    {
-      icon: Target,
-      title: "Innovación en Mecánicas",
-      description: "Asociación Argentina de Juegos",
-      year: "2024",
-    },
-  ]
 
   return (
     <div>
@@ -167,21 +141,14 @@ export default function AboutPage() {
       {/* Awards Section */}
       <section className="bg-primary/5 py-12 md:py-16 border-y-2 border-primary/10">
         <div className="container mx-auto px-4">
-          <SectionHeader label="Reconocimientos" title="Premios y Nominaciones" align="center" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
-            {awards.map((award, index) => (
-              <div
-                key={index}
-                className="bg-card rounded-lg border-2 border-primary/20 hover:border-primary p-4 md:p-6 text-center hover:shadow-xl transition-all duration-300"
-              >
-                <div className="inline-flex p-3 md:p-4 rounded-lg bg-primary/20 text-primary mb-4 shadow-sm">
-                  <award.icon className="h-6 w-6 md:h-8 md:w-8" />
-                </div>
-                <div className="text-2xl md:text-3xl font-bold text-primary mb-2">{award.year}</div>
-                <h3 className="text-sm md:text-base font-semibold text-foreground mb-2">{award.title}</h3>
-                <p className="text-xs md:text-sm text-muted-foreground">{award.description}</p>
-              </div>
-            ))}
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
+              <Award className="h-5 w-5" />
+              <span className="text-sm font-semibold">Nominación 2025</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
+              Juego Nominado a Mejor Juego en Los Premios Lúdicos 2025
+            </h2>
           </div>
         </div>
       </section>

@@ -308,40 +308,14 @@ export default function HomePageClient() {
       {/* Awards Section - Reconocimientos */}
       <section className="bg-primary/5 py-12 md:py-16 border-y-2 border-primary/10">
         <div className="container mx-auto px-4">
-          <SectionHeader label="Reconocimientos" title="Premios y Nominaciones" align="center" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
-            <div className="bg-card rounded-lg border-2 border-primary/20 hover:border-primary p-4 md:p-6 text-center hover:shadow-xl transition-all duration-300">
-              <div className="inline-flex p-3 md:p-4 rounded-lg bg-primary/20 text-primary mb-4 shadow-sm">
-                <Trophy className="h-6 w-6 md:h-8 md:w-8" />
-              </div>
-              <div className="text-2xl md:text-3xl font-bold text-primary mb-2">2025</div>
-              <h3 className="text-sm md:text-base font-semibold text-foreground mb-2">Nominado Premios Lúdicos 2025</h3>
-              <p className="text-xs md:text-sm text-muted-foreground">Mejor Juego de Mesa del Año</p>
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20">
+              <Trophy className="h-5 w-5" />
+              <span className="text-sm font-semibold">Nominación 2025</span>
             </div>
-            <div className="bg-card rounded-lg border-2 border-primary/20 hover:border-primary p-4 md:p-6 text-center hover:shadow-xl transition-all duration-300">
-              <div className="inline-flex p-3 md:p-4 rounded-lg bg-primary/20 text-primary mb-4 shadow-sm">
-                <Trophy className="h-6 w-6 md:h-8 md:w-8" />
-              </div>
-              <div className="text-2xl md:text-3xl font-bold text-primary mb-2">2024</div>
-              <h3 className="text-sm md:text-base font-semibold text-foreground mb-2">Mejor Diseño Gráfico</h3>
-              <p className="text-xs md:text-sm text-muted-foreground">Convención de Juegos BA</p>
-            </div>
-            <div className="bg-card rounded-lg border-2 border-primary/20 hover:border-primary p-4 md:p-6 text-center hover:shadow-xl transition-all duration-300">
-              <div className="inline-flex p-3 md:p-4 rounded-lg bg-primary/20 text-primary mb-4 shadow-sm">
-                <Users className="h-6 w-6 md:h-8 md:w-8" />
-              </div>
-              <div className="text-2xl md:text-3xl font-bold text-primary mb-2">2024</div>
-              <h3 className="text-sm md:text-base font-semibold text-foreground mb-2">Juego Favorito del Público</h3>
-              <p className="text-xs md:text-sm text-muted-foreground">Festival Lúdico Argentino</p>
-            </div>
-            <div className="bg-card rounded-lg border-2 border-primary/20 hover:border-primary p-4 md:p-6 text-center hover:shadow-xl transition-all duration-300">
-              <div className="inline-flex p-3 md:p-4 rounded-lg bg-primary/20 text-primary mb-4 shadow-sm">
-                <Target className="h-6 w-6 md:h-8 md:w-8" />
-              </div>
-              <div className="text-2xl md:text-3xl font-bold text-primary mb-2">2024</div>
-              <h3 className="text-sm md:text-base font-semibold text-foreground mb-2">Innovación en Mecánicas</h3>
-              <p className="text-xs md:text-sm text-muted-foreground">Asociación Argentina de Juegos</p>
-            </div>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
+              Juego Nominado a Mejor Juego en Los Premios Lúdicos 2025
+            </h2>
           </div>
         </div>
       </section>
