@@ -11,7 +11,7 @@ exports.handler = async (event, context) => {
     try {
         console.log('Fetching price from MercadoLibre API...');
 
-        // Fetch product data from MercadoLibre
+        // Fetch product data from MercadoLibre using native fetch (Node 18+)
         const response = await fetch(ML_API_URL);
 
         if (!response.ok) {
@@ -31,6 +31,7 @@ exports.handler = async (event, context) => {
             price: price,
             currency: productData.currency_id || 'ARS',
             productId: PRODUCT_ID,
+            productTitle: productData.title || 'La Campaña - Juego De Mesa',
             lastUpdated: new Date().toISOString(),
             timestamp: Date.now()
         };
