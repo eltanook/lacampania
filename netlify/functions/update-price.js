@@ -11,10 +11,17 @@ exports.handler = async (event, context) => {
     try {
         console.log('Fetching price from MercadoLibre API...');
 
-        // Fetch product data from MercadoLibre using native fetch (Node 18+)
-        const response = await fetch(ML_API_URL);
+        // Fetch product data from MercadoLibre with proper headers
+        const response = await fetch(ML_API_URL, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'Accept': 'application/json'
+            }
+        });
 
         if (!response.ok) {
+            const errorText = await response.text();
+            console.error(`MercadoLibre API error: ${response.status} - ${errorText}`);
             throw new Error(`MercadoLibre API error: ${response.status} ${response.statusText}`);
         }
 
@@ -22,6 +29,7 @@ exports.handler = async (event, context) => {
         const price = productData.price;
 
         if (typeof price !== 'number') {
+            console.error('Invalid price data:', productData);
             throw new Error('Invalid price data received from API');
         }
 
@@ -38,7 +46,7 @@ exports.handler = async (event, context) => {
 
         await store.set('current-price', JSON.stringify(priceData));
 
-        console.log(`Price updated successfully: ${price} ${priceData.currency}`);
+        console.log(`✓ Price updated successfully: ${price} ${priceData.currency}`);
 
         return {
             statusCode: 200,
@@ -63,6 +71,7 @@ exports.handler = async (event, context) => {
             body: JSON.stringify({
                 success: false,
                 error: error.message,
+                details: error.stack,
                 timestamp: new Date().toISOString()
             })
         };
