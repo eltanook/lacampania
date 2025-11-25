@@ -1,49 +1,41 @@
-import { useState, useEffect } from 'react'
+'use client';
 
-interface MercadoLibrePrice {
-  price: number
-  currency: string
-  title: string
-  available_quantity: number
-  condition: string
-  permalink: string
-}
+import { useEffect, useState } from 'react';
+
+const DEFAULT_PRICE = 42000;
 
 export function useMercadoLibrePrice(mercadoLibreUrl?: string) {
-  const [price, setPrice] = useState<number | null>(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [price, setPrice] = useState<number>(DEFAULT_PRICE);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!mercadoLibreUrl) {
-      return
+    // Si no hay URL de MercadoLibre, usar precio por defecto
+    if (!mercadoLibreUrl || !mercadoLibreUrl.includes('MLA1888909180')) {
+      setPrice(DEFAULT_PRICE);
+      setLoading(false);
+      return;
     }
 
-    const fetchPrice = async () => {
-      setLoading(true)
-      setError(null)
-
+    async function fetchPrice() {
       try {
-        const response = await fetch(
-          `/api/mercadolibre-price?url=${encodeURIComponent(mercadoLibreUrl)}`
-        )
+        const response = await fetch('/.netlify/functions/get-price');
 
-        if (!response.ok) {
-          throw new Error('Failed to fetch price')
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success && result.data && result.data.price) {
+            setPrice(result.data.price);
+          }
         }
-
-        const data: MercadoLibrePrice = await response.json()
-        setPrice(data.price)
-      } catch (err) {
-        // Silently fail and use fallback price - don't log to console
-        setError('No se pudo obtener el precio')
+      } catch (error) {
+        console.warn('Error fetching price from Netlify function, using default:', error);
+        // Mantener el precio por defecto
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
 
-    fetchPrice()
-  }, [mercadoLibreUrl])
+    fetchPrice();
+  }, [mercadoLibreUrl]);
 
-  return { price, loading, error }
+  return { price, loading };
 }
