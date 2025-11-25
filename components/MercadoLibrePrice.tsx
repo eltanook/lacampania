@@ -7,34 +7,33 @@ interface PriceData {
     currency: string;
     productId: string;
     lastUpdated: string;
-    timestamp: number;
+    fallback?: boolean;
 }
 
 export default function MercadoLibrePrice() {
-    const [priceData, setPriceData] = useState<PriceData | null>(null);
+    const DEFAULT_PRICE = 42000;
+    const [priceData, setPriceData] = useState<PriceData>({
+        price: DEFAULT_PRICE,
+        currency: 'ARS',
+        productId: 'MLA1888909180',
+        lastUpdated: new Date().toISOString()
+    });
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         async function fetchPrice() {
             try {
                 const response = await fetch('/.netlify/functions/get-price');
 
-                if (!response.ok) {
-                    throw new Error(`Error ${response.status}: ${response.statusText}`);
-                }
-
-                const result = await response.json();
-
-                if (result.success && result.data) {
-                    setPriceData(result.data);
-                    setError(null);
-                } else {
-                    throw new Error(result.error || 'No se pudo obtener el precio');
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.success && result.data) {
+                        setPriceData(result.data);
+                    }
                 }
             } catch (err) {
-                console.error('Error fetching price:', err);
-                setError(err instanceof Error ? err.message : 'Error desconocido');
+                console.warn('Error fetching price, using default:', err);
+                // Mantener el precio por defecto que ya está en el estado
             } finally {
                 setLoading(false);
             }
@@ -43,24 +42,16 @@ export default function MercadoLibrePrice() {
         fetchPrice();
     }, []);
 
-    if (loading) {
-        return <span className="text-muted-foreground">Cargando precio...</span>;
-    }
-
-    if (error) {
-        return <span className="text-destructive">Error al cargar precio</span>;
-    }
-
-    if (!priceData) {
-        return <span className="text-muted-foreground">-</span>;
-    }
-
     const formattedPrice = new Intl.NumberFormat('es-AR', {
         style: 'currency',
         currency: priceData.currency,
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
     }).format(priceData.price);
+
+    if (loading) {
+        return <span className="text-muted-foreground">Cargando...</span>;
+    }
 
     return (
         <span className="font-bold text-primary" id="precio">
