@@ -1,110 +1,247 @@
-# La Campaña - Sitio Web Oficial
+# 🎲 Sistema Automático de Precios MercadoLibre
 
-Sitio web oficial del juego de mesa argentino "La Campaña", nominado a los Premios Lúdicos 2025.
+Sistema serverless que obtiene automáticamente el precio del producto "La Campaña - Juego De Mesa" (MLA1888909180) de MercadoLibre una vez al día y lo sirve a tu frontend.
 
-## 🚀 Deploy en Netlify
+## ✨ Características
 
-### Pasos para Deploy:
+- 🤖 **Actualización automática diaria** a las 9:00 AM UTC (6:00 AM Argentina)
+- ⚡ **Serverless** - Sin backend tradicional, solo funciones Netlify
+- 💾 **Almacenamiento confiable** con Netlify Blobs
+- 🎨 **Componentes listos para usar** en React/Next.js
+- 🆓 **100% Gratuito** en el tier free de Netlify
+- 🚀 **Deploy simple** - Git push y listo
 
-1. **Conectar Repositorio:**
-   - Ve a [Netlify](https://app.netlify.com)
-   - Click en "Add new site" → "Import an existing project"
-   - Conecta con GitHub y selecciona el repositorio: `eltanook/lacampania`
+## 🏗️ Arquitectura
 
-2. **Configuración de Build:**
-   - **Build command:** `npm run build`
-   - **Publish directory:** `.next`
-   - **Node version:** `20`
-
-3. **Variables de Entorno:**
-   ```
-   NPM_FLAGS=--legacy-peer-deps
-   NODE_VERSION=20
-   ```
-
-4. **Plugin de Next.js:**
-   - Netlify detectará automáticamente que es un proyecto Next.js
-   - Instalará el plugin `@netlify/plugin-nextjs` automáticamente
-
-### Configuración Incluida:
-
-El archivo `netlify.toml` ya está configurado con:
-- ✅ Build command optimizado
-- ✅ Headers de seguridad (X-Frame-Options, CSP)
-- ✅ Cache para assets estáticos (imágenes, JS, CSS)
-- ✅ Redirects para SPA
-- ✅ Soporte para React 19 con `--legacy-peer-deps`
-
-## 🛠️ Tech Stack
-
-- **Framework:** Next.js 14.2.25 (App Router)
-- **React:** 19
-- **TypeScript:** 5
-- **Styling:** Tailwind CSS 4.1.9
-- **UI Components:** shadcn/ui + Radix UI
-- **Fonts:** Geist Sans
-- **Analytics:** Vercel Analytics
-
-## 📦 Instalación Local
-
-```bash
-# Instalar dependencias
-npm install --legacy-peer-deps
-
-# Desarrollo
-npm run dev
-
-# Build
-npm run build
-
-# Producción
-npm start
+```
+┌─────────────────┐
+│  Netlify Cron   │  ← Ejecuta diariamente a las 9:00 AM UTC
+└────────┬────────┘
+         │
+         ▼
+┌──────────────────────┐
+│  update-price.js     │  ← Consulta API de MercadoLibre
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│   Netlify Blobs      │  ← Almacena el precio
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│   get-price.js       │  ← API endpoint para el frontend
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│   Frontend React     │  ← Muestra el precio al usuario
+└──────────────────────┘
 ```
 
-## 🎨 Características
+## 📁 Estructura de Archivos
 
-- ✅ E-commerce con carrito (localStorage)
-- ✅ Catálogo de productos
-- ✅ Modo oscuro/claro
-- ✅ Responsive design (mobile, tablet, desktop)
-- ✅ SEO optimizado con JSON-LD
-- ✅ Imágenes optimizadas con lazy loading
-- ✅ Integración con WhatsApp
-- ✅ Meta Pixel tracking
-- ✅ Performance optimizado
+```
+campania_web/
+├── 📄 netlify.toml                    # Configuración Netlify + cron job
+├── 📄 package.json                    # Dependencias
+├── 📁 netlify/functions/
+│   ├── update-price.js               # 🤖 Función scheduled (cron)
+│   └── get-price.js                  # 🌐 API endpoint
+├── 📁 components/
+│   └── MercadoLibrePrice.tsx         # ⚛️ Componente React
+├── 📁 public/
+│   └── precio-demo.html              # 🎨 Página demo
+└── 📄 DEPLOYMENT.md                   # 📖 Guía de despliegue
+```
 
-## 📄 Páginas
+## 🚀 Quick Start
 
-- `/` - Home
-- `/nosotros` - Sobre los creadores
-- `/catalogo` - Catálogo de productos
-- `/merch` - Merchandising
-- `/faqs` - Preguntas frecuentes
-- `/contacto` - Contacto
+### 1. Instalar dependencias
 
-## 🎨 Colores de Marca
+```bash
+npm install
+```
 
-- **Primary (Verde):** `#3a6b60`
-- **Accent (Marrón):** `#753835`
-- **Background (Claro):** `#f8eee4`
+### 2. Deploy en Netlify
 
-## 📝 Notas
+**Opción A: Desde la web**
+1. Sube el código a GitHub
+2. Conecta el repo en [netlify.com](https://netlify.com)
+3. Deploy automático
 
-- Usa `npm install --legacy-peer-deps` por compatibilidad con React 19
-- El carrito usa localStorage (no requiere backend)
-- Las imágenes están optimizadas con Next.js Image
-- SEO mejorado con metadata estructurada
+**Opción B: Desde CLI**
+```bash
+netlify login
+netlify init
+netlify deploy --prod
+```
 
-## 🔗 Links
+### 3. Primera ejecución
 
-- **Sitio Web:** https://lacampania.netlify.app (después del deploy)
-- **Instagram:** [@lacampania.juego](https://www.instagram.com/lacampania.juego/)
-- **MercadoLibre:** [Comprar Juego](https://www.mercadolibre.com.ar/la-campana--juego-de-mesa--estrategia/up/MLAU594279492)
+Ejecuta manualmente la función para obtener el precio inicial:
 
-## 👥 Desarrollado por
+```bash
+curl https://TU-SITIO.netlify.app/.netlify/functions/update-price
+```
 
-[Zevetix](https://zevetix.online/)
+### 4. Integra en tu frontend
+
+```tsx
+import MercadoLibrePrice from '@/components/MercadoLibrePrice';
+
+<p>Precio: <MercadoLibrePrice /></p>
+```
+
+¡Listo! El precio se actualizará automáticamente cada día.
+
+## 🔌 API Endpoints
+
+### `GET /.netlify/functions/get-price`
+
+Devuelve el precio actual almacenado.
+
+**Respuesta:**
+```json
+{
+  "success": true,
+  "data": {
+    "price": 38889,
+    "currency": "ARS",
+    "productId": "MLA1888909180",
+    "lastUpdated": "2025-11-25T09:00:00.000Z",
+    "timestamp": 1732527600000
+  }
+}
+```
+
+### `GET /.netlify/functions/update-price`
+
+Actualiza el precio manualmente (también se ejecuta automáticamente vía cron).
+
+## 🎨 Uso del Componente React
+
+### Ejemplo básico
+
+```tsx
+import MercadoLibrePrice from '@/components/MercadoLibrePrice';
+
+export default function ProductCard() {
+  return (
+    <div className="product-card">
+      <h2>La Campaña - Juego De Mesa</h2>
+      <div className="price">
+        <MercadoLibrePrice />
+      </div>
+    </div>
+  );
+}
+```
+
+### Ejemplo con fetch personalizado
+
+```javascript
+async function mostrarPrecio() {
+  const res = await fetch('/.netlify/functions/get-price');
+  const { data } = await res.json();
+  
+  const precio = new Intl.NumberFormat('es-AR', {
+    style: 'currency',
+    currency: data.currency
+  }).format(data.price);
+  
+  document.getElementById('precio').textContent = precio;
+}
+```
+
+## ⏰ Cron Job
+
+La función `update-price` se ejecuta automáticamente:
+- **Frecuencia**: Diaria
+- **Hora**: 9:00 AM UTC (6:00 AM Argentina)
+- **Configuración**: `netlify.toml`
+
+```toml
+[[functions]]
+  path = "/.netlify/functions/update-price"
+  schedule = "0 9 * * *"
+```
+
+## 🔧 Configuración
+
+### Cambiar el horario del cron
+
+Edita `netlify.toml`:
+
+```toml
+schedule = "0 9 * * *"  # Formato: minuto hora día mes día-semana
+```
+
+Ejemplos:
+- `0 9 * * *` - Diario a las 9:00 AM UTC
+- `0 */6 * * *` - Cada 6 horas
+- `0 0 * * 0` - Domingos a medianoche
+
+### Cambiar el producto
+
+Edita `netlify/functions/update-price.js`:
+
+```javascript
+const PRODUCT_ID = 'TU_NUEVO_ID';  // Cambia esto
+```
+
+## 📊 Monitoreo
+
+### Ver logs en Netlify
+
+1. Dashboard → Functions → update-price → Logs
+2. Revisa ejecuciones, errores y timestamps
+
+### Verificar última actualización
+
+```bash
+curl https://TU-SITIO.netlify.app/.netlify/functions/get-price | jq '.data.lastUpdated'
+```
+
+## 🐛 Troubleshooting
+
+| Problema | Solución |
+|----------|----------|
+| Precio no aparece | Ejecuta manualmente `update-price` la primera vez |
+| Cron no funciona | Debe estar en producción, no en preview |
+| Error 404 | Verifica que las rutas sean `/.netlify/functions/...` |
+| CORS error | Ya está configurado `Access-Control-Allow-Origin: *` |
+
+## 📚 Documentación
+
+- [Guía de Despliegue Completa](./DEPLOYMENT.md)
+- [Netlify Functions Docs](https://docs.netlify.com/functions/overview/)
+- [Netlify Blobs Docs](https://docs.netlify.com/blobs/overview/)
+- [API MercadoLibre](https://developers.mercadolibre.com.ar/)
+
+## 💎 Características Técnicas
+
+- ✅ TypeScript support en componente React
+- ✅ Error handling robusto
+- ✅ Cache de 1 hora en respuestas
+- ✅ Formato automático de precios en ARS
+- ✅ Fecha de última actualización
+- ✅ CORS configurado para acceso público
+- ✅ Logging para debugging
+
+## 🤝 Contribuir
+
+Este sistema es simple y directo. Para mejoras:
+1. Fork el repo
+2. Crea una rama para tu feature
+3. Submit un PR
+
+## 📝 Licencia
+
+MIT
 
 ---
 
-© 2025 La Campaña. Todos los derechos reservados.
+**Desarrollado para La Campaña - Juego De Mesa** 🎲
+
+¿Preguntas? Revisa [DEPLOYMENT.md](./DEPLOYMENT.md) para más detalles.

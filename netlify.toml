@@ -13,6 +13,11 @@
 [functions]
   node_bundler = "esbuild"
 
+# Scheduled function to update MercadoLibre price daily at 9:00 AM UTC (6:00 AM Argentina)
+[[functions]]
+  path = "/.netlify/functions/update-price"
+  schedule = "0 9 * * *"
+
 [[headers]]
   for = "/*"
   [headers.values]

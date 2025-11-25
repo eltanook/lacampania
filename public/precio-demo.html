@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precio MercadoLibre - La Campaña</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .price-container {
+            border: 2px solid #3483fa;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            background: #f5f5f5;
+        }
+
+        .product-name {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .price {
+            font-size: 3em;
+            font-weight: bold;
+            color: #3483fa;
+            margin: 20px 0;
+        }
+
+        .loading {
+            color: #666;
+            font-style: italic;
+        }
+
+        .error {
+            color: #d32f2f;
+            padding: 10px;
+            border-radius: 4px;
+            background: #ffebee;
+        }
+
+        .last-update {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 15px;
+        }
+
+        .buy-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background-color: #3483fa;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .buy-button:hover {
+            background-color: #2968c8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="price-container">
+        <div class="product-name">La Campaña - Juego De Mesa</div>
+        <div id="precio" class="price loading">Cargando precio...</div>
+        <div id="last-update" class="last-update"></div>
+        <a href="https://www.mercadolibre.com.ar/p/MLA1888909180" target="_blank" class="buy-button">
+            Ver en MercadoLibre
+        </a>
+    </div>
+
+    <script>
+        // Function to format price in Argentine Pesos
+        function formatPrice(price, currency = 'ARS') {
+            return new Intl.NumberFormat('es-AR', {
+                style: 'currency',
+                currency: currency,
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(price);
+        }
+
+        // Function to format date
+        function formatDate(isoDate) {
+            const date = new Date(isoDate);
+            return new Intl.DateTimeFormat('es-AR', {
+                dateStyle: 'medium',
+                timeStyle: 'short'
+            }).format(date);
+        }
+
+        // Fetch and display price
+        async function fetchPrice() {
+            const priceElement = document.getElementById('precio');
+            const updateElement = document.getElementById('last-update');
+
+            try {
+                const response = await fetch('/.netlify/functions/get-price');
+
+                if (!response.ok) {
+                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    const { price, currency, lastUpdated } = result.data;
+
+                    // Update price display
+                    priceElement.textContent = formatPrice(price, currency);
+                    priceElement.classList.remove('loading', 'error');
+
+                    // Update last update time
+                    updateElement.textContent = `Última actualización: ${formatDate(lastUpdated)}`;
+                } else {
+                    throw new Error(result.error || 'No se pudo obtener el precio');
+                }
+
+            } catch (error) {
+                console.error('Error fetching price:', error);
+                priceElement.textContent = 'Error al cargar el precio';
+                priceElement.classList.remove('loading');
+                priceElement.classList.add('error');
+                updateElement.textContent = error.message;
+            }
+        }
+
+        // Fetch price on page load
+        fetchPrice();
+    </script>
+</body>
+
+</html>
