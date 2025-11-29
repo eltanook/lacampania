@@ -13,10 +13,6 @@
 [functions]
   node_bundler = "esbuild"
 
-# Scheduled function - Runs daily at 9:00 AM UTC (6:00 AM Argentina)
-[functions."scheduled-update-price"]
-  schedule = "0 9 * * *"
-
 [[headers]]
   for = "/*"
   [headers.values]
