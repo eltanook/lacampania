@@ -1,31 +1,44 @@
+const { getStore } = require('@netlify/blobs');
+
 /**
- * Netlify Function - Obtiene precio de MercadoLibre
- * Si falla, devuelve precio por defecto de $42,000
+ * Netlify Function - Get current price
+ * Reads price from Netlify Blobs storage
  */
 exports.handler = async (event, context) => {
-    const PRODUCT_ID = 'MLA1888909180';
-    const ML_API_URL = `https://api.mercadolibre.com/items/${PRODUCT_ID}`;
     const DEFAULT_PRICE = 42000;
 
     try {
-        console.log('Fetching price from MercadoLibre API...');
+        // Read from Netlify Blobs
+        const store = getStore('mercadolibre-prices');
+        const priceDataString = await store.get('current-price');
 
-        const response = await fetch(ML_API_URL, {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-                'Accept': 'application/json'
-            }
-        });
+        if (!priceDataString) {
+            console.log('⚠️ No price found in Blobs, returning default');
 
-        if (!response.ok) {
-            console.warn(`MercadoLibre API returned ${response.status}, using default price`);
-            throw new Error('API error');
+            // Return default price if nothing is stored yet
+            return {
+                statusCode: 200,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Cache-Control': 'public, max-age=3600'
+                },
+                body: JSON.stringify({
+                    success: true,
+                    data: {
+                        price: DEFAULT_PRICE,
+                        currency: 'ARS',
+                        productId: 'MLA1888909180',
+                        lastUpdated: new Date().toISOString(),
+                        source: 'default'
+                    }
+                })
+            };
         }
 
-        const productData = await response.json();
-        const price = productData.price || DEFAULT_PRICE;
+        const priceData = JSON.parse(priceDataString);
 
-        console.log(`✓ Price fetched: ${price} ARS`);
+        console.log(`✅ Price retrieved from Blobs: $${priceData.price}`);
 
         return {
             statusCode: 200,
@@ -36,19 +49,14 @@ exports.handler = async (event, context) => {
             },
             body: JSON.stringify({
                 success: true,
-                data: {
-                    price: price,
-                    currency: productData.currency_id || 'ARS',
-                    productId: PRODUCT_ID,
-                    lastUpdated: new Date().toISOString()
-                }
+                data: priceData
             })
         };
 
     } catch (error) {
-        console.warn('Error fetching from MercadoLibre, returning default price:', error.message);
+        console.error('❌ Error reading from Blobs:', error.message);
 
-        // Devolver precio por defecto en caso de error
+        // Return default price on error
         return {
             statusCode: 200,
             headers: {
@@ -61,9 +69,10 @@ exports.handler = async (event, context) => {
                 data: {
                     price: DEFAULT_PRICE,
                     currency: 'ARS',
-                    productId: PRODUCT_ID,
+                    productId: 'MLA1888909180',
                     lastUpdated: new Date().toISOString(),
-                    fallback: true
+                    source: 'error-fallback',
+                    error: error.message
                 }
             })
         };
