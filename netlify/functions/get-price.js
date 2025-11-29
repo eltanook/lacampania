@@ -1,21 +1,19 @@
 const { getStore } = require('@netlify/blobs');
 
-/**
- * Netlify Function - Get current price
- * Reads price from Netlify Blobs storage
- */
 exports.handler = async (event, context) => {
     const DEFAULT_PRICE = 42000;
 
     try {
-        // Read from Netlify Blobs
-        const store = getStore('mercadolibre-prices');
+        // Use Netlify's automatic context
+        const store = getStore({
+            name: 'mercadolibre-prices',
+            siteID: context.site?.id || process.env.SITE_ID,
+            token: context.env?.NETLIFY_TOKEN || process.env.NETLIFY_TOKEN
+        });
+
         const priceDataString = await store.get('current-price');
 
         if (!priceDataString) {
-            console.log('⚠️ No price found in Blobs, returning default');
-
-            // Return default price if nothing is stored yet
             return {
                 statusCode: 200,
                 headers: {
@@ -38,8 +36,6 @@ exports.handler = async (event, context) => {
 
         const priceData = JSON.parse(priceDataString);
 
-        console.log(`✅ Price retrieved from Blobs: $${priceData.price}`);
-
         return {
             statusCode: 200,
             headers: {
@@ -54,15 +50,13 @@ exports.handler = async (event, context) => {
         };
 
     } catch (error) {
-        console.error('❌ Error reading from Blobs:', error.message);
+        console.error('Error:', error.message);
 
-        // Return default price on error
         return {
             statusCode: 200,
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Cache-Control': 'public, max-age=600'
+                'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify({
                 success: true,
@@ -71,8 +65,7 @@ exports.handler = async (event, context) => {
                     currency: 'ARS',
                     productId: 'MLA1888909180',
                     lastUpdated: new Date().toISOString(),
-                    source: 'error-fallback',
-                    error: error.message
+                    source: 'fallback'
                 }
             })
         };
