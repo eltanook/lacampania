@@ -25,7 +25,7 @@ export const products: Product[] = [
     shortDescription: "Un emocionante juego de estrategia argentino para 2-6 jugadores.",
     description:
       "La Campaña es un juego de mesa de estrategia argentino para 2-6 jugadores donde cada decisión cuenta. Incluye 120 cartas únicas, tablero de juego, fichas de recursos y manual de reglas completo. Perfecto para noches de juego con amigos y familia.",
-    price: 40635,
+    price: 0,
     labels: ["Más Vendido", "Stock Limitado"],
     category: "Juego Base",
     images: [
@@ -145,8 +145,8 @@ export const products: Product[] = [
     shortDescription: "Camiseta oficial con diseño exclusivo de La Campaña.",
     description:
       "Camiseta 100% algodón con estampado de alta calidad del logo de La Campaña. Disponible en tallas S, M, L, XL y XXL.",
-    price: 4500,
-    salePrice: 4000,
+    price: 0,
+    salePrice: 0,
     labels: ["Oferta", "Nuevo"],
     stock: "normal",
     colorOptions: ["Negro", "Blanco", "Verde"],
@@ -163,7 +163,7 @@ export const products: Product[] = [
     shortDescription: "Llavero metálico con el logo de La Campaña.",
     description:
       "Llavero de metal de alta calidad con el logo de La Campaña grabado. Perfecto para llevar tu pasión por el juego a todas partes.",
-    price: 1500,
+    price: 0,
     stock: "normal",
     colorOptions: ["Plateado", "Dorado", "Negro"],
     iconOptions: ["Logo", "Dado", "Carta"],

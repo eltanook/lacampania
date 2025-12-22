@@ -32,12 +32,12 @@ export function CatalogProductCard({
 }: CatalogProductCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
-  
-  // Fetch live price from MercadoLibre for the main product
+
+  // Fetch live price from MercadoLibre for the main product (only if price > 0)
   const { price: livePrice, loading: priceLoading } = useMercadoLibrePrice(
-    id === "la-campania-base" ? mercadoLibreUrl : undefined
+    id === "la-campania-base" && price > 0 ? mercadoLibreUrl : undefined
   )
-  
+
   const displayPrice = livePrice || price
   const isInternalLink = !!detailPageUrl
   const href = isInternalLink ? detailPageUrl : mercadoLibreUrl
@@ -46,13 +46,13 @@ export function CatalogProductCard({
 
   const WrapperComponent = isInternalLink ? Link : "a"
   const wrapperProps = isInternalLink ? { href } : { href, target: "_blank", rel: "noopener noreferrer" }
-  
+
   // Carousel logic only for products without detailPageUrl (going to MercadoLibre directly)
   const shouldShowCarousel = !isInternalLink && images && images.length > 1
-  
+
   useEffect(() => {
     if (!shouldShowCarousel) return
-    
+
     const interval = setInterval(() => {
       setIsTransitioning(true)
       setTimeout(() => {
@@ -60,10 +60,10 @@ export function CatalogProductCard({
         setIsTransitioning(false)
       }, 300)
     }, 3000)
-    
+
     return () => clearInterval(interval)
   }, [shouldShowCarousel, images])
-  
+
   const currentImage = shouldShowCarousel ? images[currentImageIndex] : image
 
   return (
@@ -77,9 +77,8 @@ export function CatalogProductCard({
           alt={name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className={`object-cover group-hover:scale-105 transition-all duration-500 ${
-            isTransitioning ? "opacity-0" : "opacity-100"
-          }`}
+          className={`object-cover group-hover:scale-105 transition-all duration-500 ${isTransitioning ? "opacity-0" : "opacity-100"
+            }`}
           loading="lazy"
         />
         {labels && labels.length > 0 && (
@@ -88,9 +87,8 @@ export function CatalogProductCard({
               <Badge
                 key={index}
                 variant={label === "Más Vendido" ? "default" : "secondary"}
-                className={`${
-                  label === "Más Vendido" ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground"
-                } font-semibold shadow-md`}
+                className={`${label === "Más Vendido" ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground"
+                  } font-semibold shadow-md`}
               >
                 {label}
               </Badge>
@@ -101,15 +99,17 @@ export function CatalogProductCard({
       <div className="p-6 flex flex-col flex-1">
         <h3 className="text-xl font-semibold text-foreground mb-2">{name}</h3>
         {description && <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{description}</p>}
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-3xl font-bold text-primary">
-            {priceLoading ? (
-              <span className="text-xl">Cargando...</span>
-            ) : (
-              `$${displayPrice.toLocaleString('es-AR')}`
-            )}
-          </span>
-        </div>
+        {price > 0 && (
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-3xl font-bold text-primary">
+              {priceLoading ? (
+                <span className="text-xl">Cargando...</span>
+              ) : (
+                `$${displayPrice.toLocaleString('es-AR')}`
+              )}
+            </span>
+          </div>
+        )}
         <div className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md font-semibold shadow-md group-hover:shadow-lg transition-all mt-auto">
           <ButtonIcon className="h-5 w-5" />
           {buttonText}
