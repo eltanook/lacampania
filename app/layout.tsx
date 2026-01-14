@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | La Campaña",
   },
   description:
-    "La Campaña es un juego de mesa de estrategia argentino para 2-6 jugadores. Más dinámico que Catan con partidas de 15-20 minutos. Nominado a los Premios Lúdicos 2025. Compra online con envíos a todo el país.",
+    "La Campaña es un juego de mesa de estrategia argentino para 2-5 jugadores. Más dinámico que Catan con partidas de 15-20 minutos. Nominado a los Premios Lúdicos 2025. Compra online con envíos a todo el país.",
   keywords: [
     "la campaña juego de mesa",
     "juego de mesa argentino",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "juegos de cartas estrategia",
     "board game argentina",
     "premios lúdicos 2025",
-    "juego mesa 2-6 jugadores",
+    "juego mesa 2-5 jugadores",
     "alternativa catan",
     "juego mesa rápido",
     "juegos mesa buenos aires",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     siteName: "La Campaña",
     title: "La Campaña - Juego de Mesa Argentino de Estrategia",
     description:
-      "Más dinámico que Catan. Partidas rápidas de 15-20 minutos para 2-6 jugadores. Nominado a los Premios Lúdicos 2025. Combina gestión de recursos, combate directo y alianzas.",
+      "Más dinámico que Catan. Partidas rápidas de 15-20 minutos para 2-5 jugadores. Nominado a los Premios Lúdicos 2025. Combina gestión de recursos, combate directo y alianzas.",
     images: [
       {
         url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Banner-01.png-FYDGGKH4GkOaJFKO7mCRwyeS6EB2es.jpeg",
@@ -90,7 +90,6 @@ export const metadata: Metadata = {
   verification: {
     google: "google-site-verification-code",
   },
-    generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -153,7 +152,7 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
-        {/* End of Meta Pixel tracking code */}
+        {/* Fin del código de seguimiento Meta Pixel */}
         <ThemeProvider defaultTheme="light">
           <CartProvider>
             <Suspense fallback={null}>

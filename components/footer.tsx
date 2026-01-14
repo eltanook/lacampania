@@ -10,7 +10,7 @@ export function Footer() {
     <footer className="bg-background border-t-4 border-t-primary">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {/* Column 1: Logo and Slogan */}
+          {/* Columna 1: Logo y eslogan */}
           <div>
             <Image
               src="/images/logo-horizontal.png"
@@ -24,7 +24,7 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Column 2: Quick Links */}
+          {/* Columna 2: Links rápidos */}
           <div>
             <h3 className="font-semibold text-primary mb-4 text-base">Links Rápidos</h3>
             <ul className="space-y-2">
@@ -56,7 +56,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Contact Info */}
+          {/* Columna 3: Información de contacto */}
           <div>
             <h3 className="font-semibold text-primary mb-4 text-base">Datos de Contacto</h3>
             <ul className="space-y-3">
@@ -75,7 +75,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Social Media */}
+          {/* Columna 4: Redes sociales */}
           <div>
             <h3 className="font-semibold text-primary mb-4 text-base">Redes Sociales</h3>
             <div className="flex gap-3 mb-6">

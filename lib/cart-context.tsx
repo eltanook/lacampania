@@ -22,51 +22,52 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
+/**
+ * Proveedor del contexto del carrito de compras.
+ * Gestiona el estado del carrito y lo persiste en localStorage.
+ */
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
   const [isLoaded, setIsLoaded] = useState(false)
 
+  // Cargar carrito desde localStorage al montar el componente
   useEffect(() => {
     const savedCart = localStorage.getItem("la-campania-cart")
     if (savedCart) {
       try {
         const parsed = JSON.parse(savedCart)
-        console.log("[v0] Cart loaded from localStorage:", parsed)
         setItems(parsed)
       } catch (error) {
-        console.error("[v0] Error loading cart from localStorage:", error)
+        console.error("Error al cargar el carrito desde localStorage:", error)
       }
     }
     setIsLoaded(true)
   }, [])
 
+  // Guardar carrito en localStorage cada vez que cambie
   useEffect(() => {
     if (isLoaded) {
-      console.log("[v0] Saving cart to localStorage:", items)
       localStorage.setItem("la-campania-cart", JSON.stringify(items))
     }
   }, [items, isLoaded])
 
   const addItem = (item: Omit<CartItem, "quantity">) => {
-    console.log("[v0] Adding item to cart:", item)
     setItems((prev) => {
       const existing = prev.find((i) => i.id === item.id)
       if (existing) {
-        console.log("[v0] Item already exists, incrementing quantity")
+        // Si el item ya existe, incrementar la cantidad
         return prev.map((i) => (i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i))
       }
-      console.log("[v0] Adding new item to cart")
+      // Si es un item nuevo, agregarlo con cantidad 1
       return [...prev, { ...item, quantity: 1 }]
     })
   }
 
   const removeItem = (id: string) => {
-    console.log("[v0] Removing item from cart:", id)
     setItems((prev) => prev.filter((i) => i.id !== id))
   }
 
   const updateQuantity = (id: string, quantity: number) => {
-    console.log("[v0] Updating quantity for item:", id, "to:", quantity)
     if (quantity <= 0) {
       removeItem(id)
       return
@@ -75,7 +76,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }
 
   const clearCart = () => {
-    console.log("[v0] Clearing cart")
     setItems([])
   }
 

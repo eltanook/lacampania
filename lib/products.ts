@@ -1,3 +1,16 @@
+/**
+ * Catálogo de Productos de La Campaña
+ * 
+ * Este archivo define todos los productos disponibles en el sitio web:
+ * - Juego base
+ * - Expansiones
+ * - Accesorios
+ * - Merchandising
+ * 
+ * Los productos con `featured: true` se muestran en la página principal.
+ * Los productos con price = 0 obtienen su precio automáticamente desde MercadoLibre.
+ */
+
 export interface Product {
   id: string
   sku: string
@@ -17,14 +30,15 @@ export interface Product {
   featured: boolean
 }
 
+// Catálogo completo de productos disponibles
 export const products: Product[] = [
   {
     id: "la-campania-base",
     sku: "LC-BASE-001",
     name: "La Campaña - Juego de Mesa - Estrategia",
-    shortDescription: "Un emocionante juego de estrategia argentino para 2-6 jugadores.",
+    shortDescription: "Un emocionante juego de estrategia argentino para 2-5 jugadores.",
     description:
-      "La Campaña es un juego de mesa de estrategia argentino para 2-6 jugadores donde cada decisión cuenta. Incluye 120 cartas únicas, tablero de juego, fichas de recursos y manual de reglas completo. Perfecto para noches de juego con amigos y familia.",
+      "La Campaña es un juego de mesa de estrategia argentino para 2-5 jugadores donde cada decisión cuenta. Incluye 120 cartas únicas, tablero de juego, fichas de recursos y manual de reglas completo. Perfecto para noches de juego con amigos y familia.",
     price: 0,
     labels: ["Más Vendido", "Stock Limitado"],
     category: "Juego Base",
@@ -174,14 +188,29 @@ export const products: Product[] = [
   },
 ]
 
+/**
+ * Obtiene un producto por su ID
+ * @param id - El ID único del producto
+ * @returns El producto encontrado o undefined si no existe
+ */
 export function getProductById(id: string): Product | undefined {
   return products.find((p) => p.id === id)
 }
 
+/**
+ * Obtiene todos los productos de una categoría específica
+ * @param category - La categoría a filtrar (ej: "Juego Base", "Accesorios", "Merchandising")
+ * @returns Array de productos de la categoría
+ */
 export function getProductsByCategory(category: string): Product[] {
   return products.filter((p) => p.category === category)
 }
 
+/**
+ * Obtiene solo los productos destacados (featured: true)
+ * Estos productos se muestran en la página principal
+ * @returns Array de productos destacados
+ */
 export function getFeaturedProducts(): Product[] {
   return products.filter((p) => p.featured)
 }
