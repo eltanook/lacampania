@@ -8,6 +8,8 @@
   --brand-verde: #3a6b60;
   --brand-claro: #f8eee4;
   --brand-marron: #753835;
+  --brand-azul: #3a5882;
+  --brand-dragon: #2d2d35;
 
   /* Custom La Campaña color palette */
   --background: oklch(1 0 0);
@@ -50,6 +52,8 @@
 
 .dark {
   /* Updated dark mode to use brand colors */
+  --brand-azul: #5a7aaa;
+  --brand-dragon: #4a4a55;
   --background: #1a1a1a;
   --foreground: #f8eee4;
   --card: #1a1a1a;
@@ -127,6 +131,8 @@
   --color-brand-verde: var(--brand-verde);
   --color-brand-claro: var(--brand-claro);
   --color-brand-marron: var(--brand-marron);
+  --color-brand-azul: var(--brand-azul);
+  --color-brand-dragon: var(--brand-dragon);
 }
 
 @layer base {

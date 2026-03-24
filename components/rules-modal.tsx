@@ -18,7 +18,7 @@ export function RulesModal() {
           <span className="sm:hidden">Ver Reglas</span>
         </button>
       </DialogTrigger>
-      <DialogContent className="max-w-5xl w-[95vw] max-h-[90vh]">
+      <DialogContent className="max-w-6xl w-[95vw] max-h-[90vh]">
         <ScrollArea className="h-[80vh] pr-4">
           <div className="mb-4">
             <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary mb-2">
@@ -110,20 +110,20 @@ export function RulesModal() {
                     Ventaja sobre Caballeros (daño puro). Daño impuro contra Magos y Arqueros.
                   </p>
                 </div>
-                <div className="bg-accent/10 border border-accent/30 rounded-lg p-3">
-                  <h4 className="text-sm font-semibold text-accent mb-1">Caballeros (Espadas)</h4>
+                <div className="bg-brand-azul/10 border border-brand-azul/30 rounded-lg p-3">
+                  <h4 className="text-sm font-semibold text-brand-azul mb-1">Caballeros (Espadas)</h4>
                   <p className="text-xs text-muted-foreground">
                     Ventaja sobre Arqueros (daño puro). Daño impuro contra Caballeros y Magos.
                   </p>
                 </div>
-                <div className="bg-primary/10 border border-primary/30 rounded-lg p-3">
-                  <h4 className="text-sm font-semibold text-primary mb-1">Arqueros (Flechas)</h4>
+                <div className="bg-accent/10 border border-accent/30 rounded-lg p-3">
+                  <h4 className="text-sm font-semibold text-accent mb-1">Arqueros (Flechas)</h4>
                   <p className="text-xs text-muted-foreground">
                     Ventaja sobre Magos (daño puro). Daño impuro contra Arqueros y Caballeros.
                   </p>
                 </div>
-                <div className="bg-accent/10 border border-accent/30 rounded-lg p-3">
-                  <h4 className="text-sm font-semibold text-accent mb-1">Dragón</h4>
+                <div className="bg-brand-dragon/10 border border-brand-dragon/30 rounded-lg p-3">
+                  <h4 className="text-sm font-semibold text-brand-dragon mb-1">Dragón</h4>
                   <p className="text-xs text-muted-foreground">
                     Súper guerrero que ataca con cualquier recurso. Solo recibe daño impuro.
                   </p>
