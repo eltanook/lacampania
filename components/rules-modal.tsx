@@ -46,7 +46,7 @@ export function RulesModal() {
               <ul className="list-disc list-inside space-y-1 text-xs md:text-sm text-muted-foreground">
                 <li>Separar los 15 guerreros del resto del mazo</li>
                 <li>Mezclar recursos y cartas especiales</li>
-                <li>Repartir: 3 guerreros + 4 cartas (2-3-5 jugadores) o 2 guerreros + 5 cartas (4 jugadores)</li>
+                <li>Repartir: 3 guerreros + 4 cartas del mazo general</li>
                 <li>Cada jugador baja al menos un guerrero boca abajo y luego se dan vuelta simultáneamente</li>
               </ul>
             </div>
@@ -71,15 +71,27 @@ export function RulesModal() {
                   </p>
                 </div>
                 <div className="bg-card border border-border rounded-lg p-3">
-                  <h4 className="text-sm font-semibold text-foreground mb-1">3. Usar especiales</h4>
+                  <h4 className="text-sm font-semibold text-foreground mb-1">3. Sabotaje</h4>
                   <p className="text-xs text-muted-foreground">
-                    Activa cartas especiales como Ladrón, Espía, Asedio o poderes de guerrero.
+                    Con la carta correspondiente un jugador puede robar o espiar.
                   </p>
                 </div>
                 <div className="bg-card border border-border rounded-lg p-3">
-                  <h4 className="text-sm font-semibold text-foreground mb-1">4. Comprar/Construir</h4>
+                  <h4 className="text-sm font-semibold text-foreground mb-1">4. Comerciar</h4>
                   <p className="text-xs text-muted-foreground">
-                    Compra cartas con oro (2 monedas = 1 carta) o construye tu castillo.
+                    Comprar cartas con dos monedas de oro o hacer un trueque con el mazo central entregando 3 cartas por una.
+                  </p>
+                </div>
+                <div className="bg-card border border-border rounded-lg p-3">
+                  <h4 className="text-sm font-semibold text-foreground mb-1">5. Construir</h4>
+                  <p className="text-xs text-muted-foreground">
+                    Consigue una reliquia y luego invierte tu oro para levantar tu castillo.
+                  </p>
+                </div>
+                <div className="bg-card border border-border rounded-lg p-3">
+                  <h4 className="text-sm font-semibold text-foreground mb-1">Reclutar</h4>
+                  <p className="text-xs text-muted-foreground">
+                    En cualquier momento de su turno, un jugador puede bajar un guerrero a su campo de batalla o al de un aliado sin superar los 5 guerreros en simultaneo.
                   </p>
                 </div>
               </div>
