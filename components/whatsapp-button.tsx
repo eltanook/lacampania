@@ -4,7 +4,7 @@ import { MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function WhatsAppButton() {
-  const phoneNumber = "5491137850259"
+  const phoneNumber = "5491167512433"
   const message = "Hola! Me interesa conocer más sobre La Campaña."
 
   const handleClick = () => {

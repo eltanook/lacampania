@@ -106,7 +106,7 @@ export default function RootLayout({
     logo: "https://lacampania.com.ar/images/logo-horizontal.png",
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+54-11-3785-0259",
+      telephone: "+54-11-6751-2433",
       contactType: "customer service",
       areaServed: "AR",
       availableLanguage: "Spanish",

@@ -26,7 +26,7 @@ export default function CartClientPage() {
     message += `*Total: $${total.toLocaleString('es-AR')}*\n\n`
     message += "¿Podrían confirmar disponibilidad y coordinar el envío?"
 
-    const phoneNumber = "5491137850259"
+    const phoneNumber = "5491167512433"
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
 
     window.open(whatsappUrl, "_blank")

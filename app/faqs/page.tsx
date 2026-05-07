@@ -105,7 +105,7 @@ export default function FAQsPage() {
           </h2>
           <p className="text-base md:text-lg mb-6 opacity-90">Contáctanos y te responderemos a la brevedad</p>
           <a
-            href="https://wa.me/5491137850259?text=Hola!%20Tengo%20una%20consulta%20sobre%20La%20Campaña"
+            href="https://wa.me/5491167512433?text=Hola!%20Tengo%20una%20consulta%20sobre%20La%20Campaña"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-6 py-3 bg-primary-foreground text-primary rounded-md font-semibold hover:opacity-90 transition-opacity text-base"

@@ -152,10 +152,10 @@ export default function ContactClientPage() {
                   <div>
                     <p className="text-sm md:text-base font-medium text-foreground mb-1">Teléfono</p>
                     <a
-                      href="tel:+5491137850259"
+                      href="tel:+5491167512433"
                       className="text-sm md:text-base text-muted-foreground hover:text-primary transition-colors"
                     >
-                      +54 11 3785-0259
+                      +54 11 6751-2433
                     </a>
                   </div>
                 </div>
