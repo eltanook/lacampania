@@ -138,7 +138,7 @@ export function RulesModal() {
                 <h3 className="text-base md:text-xl font-bold text-foreground">Sistema de Combate</h3>
               </div>
               <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
-                Cada guerrero tiene 10 vidas. El daño puro se aplica completo (carta a 90°), el daño impuro se reduce a la mitad (carta debajo del guerrero). Los números impares se redondean hacia abajo. Los guerreros ejecutados van al cementerio.
+                Cada guerrero tiene 10 vidas. El daño puro se aplica completo (carta a 90°), el daño impuro se reduce a la mitad (carta debajo del guerrero). los numeros impares se dividen a la mitad, por ejemplo un 5 es 2,5 de daño impuro. Los guerreros ejecutados van al cementerio.
               </p>
             </div>
 
