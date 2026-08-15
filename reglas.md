@@ -112,7 +112,7 @@ Un arquero ataca con una carta de 8 flechas:
 * **Daño Puro:** La carta se coloca a 90° sobre el guerrero.
 * **Daño Impuro:** La carta se coloca debajo del guerrero.
 
-Si el recurso tiene número impar, el daño se redondea hacia abajo (por ejemplo, 7 = 3,5).
+Si el recurso tiene número impar, el daño se divide a la mitad exacta, sin redondear (por ejemplo, 7 = 3,5).
 
 ---
 

@@ -27,7 +27,7 @@ export default function FAQsPage() {
     {
       question: "¿Cómo funciona el sistema de combate?",
       answer:
-        "Cada guerrero tiene 10 vidas y utiliza recursos específicos (pociones para magos, espadas para caballeros, flechas para arqueros). El daño puede ser puro (completo) o impuro (mitad del valor). Los magos tienen ventaja sobre caballeros, los caballeros sobre arqueros, y los arqueros sobre magos.",
+        "Cada guerrero tiene 10 vidas y utiliza recursos específicos (pociones para magos, espadas para caballeros, flechas para arqueros). El daño puede ser puro (completo) o impuro (mitad exacta del valor, sin redondear). Los magos tienen ventaja sobre caballeros, los caballeros sobre arqueros, y los arqueros sobre magos.",
     },
     {
       question: "¿Qué es el castillo y cómo se construye?",
