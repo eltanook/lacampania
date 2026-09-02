@@ -1,11 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, type CSSProperties } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ExternalLink, ChevronRight } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { useMercadoLibrePrice } from "@/hooks/use-mercadolibre-price"
+import { cn } from "@/lib/utils"
 
 interface CatalogProductCardProps {
   id: string
@@ -17,6 +18,8 @@ interface CatalogProductCardProps {
   description?: string
   labels?: string[]
   detailPageUrl?: string
+  /** Color de marca del producto: pinta el borde de la tarjeta y el botón */
+  accentColor?: string
 }
 
 export function CatalogProductCard({
@@ -29,6 +32,7 @@ export function CatalogProductCard({
   description,
   labels,
   detailPageUrl,
+  accentColor,
 }: CatalogProductCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
@@ -39,6 +43,10 @@ export function CatalogProductCard({
   )
 
   const displayPrice = livePrice || price
+  // Cuando el producto trae color propio, se usa para el borde y el botón
+  const accentVars = accentColor
+    ? ({ "--card-accent": accentColor, "--card-accent-soft": `${accentColor}40` } as CSSProperties)
+    : undefined
   const isInternalLink = !!detailPageUrl
   const href = isInternalLink ? detailPageUrl : mercadoLibreUrl
   const buttonText = isInternalLink ? "Ver más detalles" : "Ver en MercadoLibre"
@@ -69,7 +77,13 @@ export function CatalogProductCard({
   return (
     <WrapperComponent
       {...wrapperProps}
-      className="group rounded-lg border-2 border-primary/20 bg-card overflow-hidden hover:border-primary hover:shadow-xl transition-all duration-300 block flex flex-col"
+      style={accentVars}
+      className={cn(
+        "group rounded-lg border-2 bg-card overflow-hidden hover:shadow-xl transition-all duration-300 block flex flex-col",
+        accentColor
+          ? "border-[var(--card-accent-soft)] hover:border-[var(--card-accent)]"
+          : "border-primary/20 hover:border-primary",
+      )}
     >
       <div className="relative aspect-square overflow-hidden">
         <Image
@@ -110,7 +124,10 @@ export function CatalogProductCard({
             </span>
           </div>
         )}
-        <div className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md font-semibold shadow-md group-hover:shadow-lg transition-all mt-auto">
+        <div
+          style={accentColor ? { backgroundColor: accentColor } : undefined}
+          className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-md font-semibold shadow-md group-hover:shadow-lg transition-all mt-auto"
+        >
           <ButtonIcon className="h-5 w-5" />
           {buttonText}
         </div>

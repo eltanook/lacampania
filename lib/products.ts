@@ -25,6 +25,8 @@ export interface Product {
   colorOptions?: string[]
   iconOptions?: string[]
   category: string
+  /** Color de marca del producto (borde de la tarjeta y botón de MercadoLibre) */
+  accentColor?: string
   images: string[]
   dimensions: string
   featured: boolean
@@ -55,23 +57,27 @@ export const products: Product[] = [
       "https://www.mercadolibre.com.ar/la-campana--juego-de-mesa--estrategia/up/MLAU594279492?pdp_filters=item_id:MLA1888909180",
   },
   {
-    id: "expansion-estrategas",
+    id: "expansion-heroes-ciudades",
     sku: "LC-EXP-001",
-    name: "Expansión: Los Estrategas",
-    shortDescription: "Nuevas cartas y mecánicas para expandir tu experiencia de juego.",
+    name: "La Campaña - Héroes y Ciudades - Expansión",
+    shortDescription: "¡Levantarás los cimientos del nuevo imperio! Requiere el juego base.",
     description:
-      "Añade 60 cartas nuevas con mecánicas avanzadas, 3 nuevos personajes estrategas y reglas opcionales para partidas más complejas. Requiere el juego base para jugar.",
-    price: 8000,
-    labels: ["Stock Limitado"],
+      "Héroes y Ciudades es la expansión de La Campaña: nuevas cartas de héroes y ciudades para levantar los cimientos del nuevo imperio y llevar tus partidas un paso más allá. Se requiere el juego base para jugar.",
+    price: 0,
+    labels: ["Nuevo"],
     category: "Expansión",
+    accentColor: "#853841",
     images: [
-      "/board-game-expansion-cards.jpg",
-      "/expansion-pack-cards-with-new-characters.jpg",
-      "/strategic-board-game-expansion-cards-spread-on-tab.jpg",
+      "/expansion-heroes-ciudades.webp",
+      "/expansion-heroes-ciudades-2.webp",
+      "/expansion-heroes-ciudades-3.webp",
+      "/expansion-heroes-ciudades-4.webp",
+      "/expansion-heroes-ciudades-5.webp",
     ],
-    dimensions: "20cm x 15cm x 4cm",
-    featured: false,
-    mercadoLibreUrl: "https://www.mercadolibre.com.ar/la-campania-expansion-estrategas",
+    dimensions: "Ver medidas en la publicación",
+    featured: true,
+    mercadoLibreUrl:
+      "https://www.mercadolibre.com.ar/la-campana-heroes-y-ciudades-expansion/p/MLA2087256583?pdp_filters=item_id%3AMLA3511727238",
   },
   {
     id: "bundle-completo",
@@ -79,7 +85,7 @@ export const products: Product[] = [
     name: "Bundle Completo",
     shortDescription: "Juego base + expansión + accesorios premium.",
     description:
-      "El pack definitivo para los verdaderos estrategas. Incluye el juego base, la expansión Los Estrategas, sleeves premium, playmat deluxe y dados personalizados. Ahorra 20% comprando el bundle completo.",
+      "El pack definitivo para los verdaderos estrategas. Incluye el juego base, la expansión Héroes y Ciudades, sleeves premium, playmat deluxe y dados personalizados. Ahorra 20% comprando el bundle completo.",
     price: 28000,
     category: "Bundle",
     images: [

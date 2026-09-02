@@ -38,7 +38,10 @@ export default function HomePageClient() {
     },
   ]
 
-  const featuredProducts = getFeaturedProducts()
+  // Solo los productos a la venta: el merch aún no se publica en la home
+  const featuredProducts = getFeaturedProducts().filter(
+    (product) => product.category !== "Merchandising" && product.category !== "Accesorios",
+  )
 
   const [isVisible, setIsVisible] = useState({
     game: false,
@@ -170,40 +173,21 @@ export default function HomePageClient() {
       >
         <div className="container mx-auto px-4">
           <SectionHeader label="Productos" title="Productos Destacados" align="center" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-            {featuredProducts.map((product) => {
-              // MVP: Only show main game, overlay "Próximamente" on merch products
-              const isMerch = product.category === "Merchandising" || product.category === "Accesorios"
-              
-              return (
-                <div key={product.id} className="relative">
-                  <CatalogProductCard
-                    id={product.id}
-                    name={product.name}
-                    price={product.price}
-                    image={product.images[0]}
-                    images={product.images}
-                    mercadoLibreUrl={product.mercadoLibreUrl || "#"}
-                    description={product.shortDescription}
-                    labels={product.labels}
-                    detailPageUrl={
-                      product.category === "Merchandising" || product.category === "Accesorios"
-                        ? `/merch/${product.id}`
-                        : undefined
-                    }
-                  />
-                  {/* MVP: Overlay for merch products */}
-                  {isMerch && (
-                    <div className="absolute inset-0 bg-primary/80 backdrop-blur-[2px] rounded-lg flex items-center justify-center z-10 cursor-not-allowed">
-                      <div className="text-center px-4 pointer-events-none">
-                        <p className="text-xl sm:text-2xl font-bold text-primary-foreground mb-2">Próximamente</p>
-                        <p className="text-xs sm:text-sm text-primary-foreground/80">Estamos preparando estos productos</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )
-            })}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
+            {featuredProducts.map((product) => (
+              <CatalogProductCard
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                price={product.price}
+                image={product.images[0]}
+                images={product.images}
+                mercadoLibreUrl={product.mercadoLibreUrl || "#"}
+                description={product.shortDescription}
+                labels={product.labels}
+                accentColor={product.accentColor}
+              />
+            ))}
           </div>
           <div className="text-center mt-6 md:mt-8">
             <Button
